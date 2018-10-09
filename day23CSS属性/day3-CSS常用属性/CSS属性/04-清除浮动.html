@@ -1,0 +1,55 @@
+<!--
+	1.清除浮动：是指清除因为浮动而产生的问题(高度塌陷) --- 问题不是什么时候都会产生的
+	
+	2.怎么清除浮动？
+	a.添加空的div：
+		在父标签(高度塌陷的标签)的最后添加一个空的div,并且设置这div的样式表: clear:both
+		
+		（可能会产生大量的额外的代码）
+	b.设置overflow：
+		在父标签中设置样式表的overflow的值为hidden  
+		
+	c.after{display:block;clear:both;content:".";visibility:hidden;height:0;} clear{zoom:1;}
+	
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			/*2.清除浮动方案2*/
+			/*.clear{
+				overflow: hidden;
+			}*/
+			
+			/*3.清除浮动方案3*/
+			.clear:after{
+				display: block;
+				clear: both;
+				content: "";
+				visibility: hidden;
+				height: 0;
+			}
+			.clear{
+				zoom: 1;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div style="height: 100px; background-color: red;"></div>
+		<div style="background-color: royalblue;" class="clear">
+			<div style="width: 30%; background-color: peru; float: left;">
+				<img src="img/luffy3.png" alt="" />
+			</div>
+			<div style="width: 30%; background-color: plum; height: 200px; float: left;"></div>
+			
+			<!--1.清除浮动方案1-->
+			<!--<div id="" style="clear: both;"></div>-->
+		</div>
+		<div style="height: 100px; background-color: green;"></div>
+	</body>
+</html>

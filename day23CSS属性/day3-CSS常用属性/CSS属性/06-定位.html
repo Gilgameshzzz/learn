@@ -1,0 +1,71 @@
+
+<!--定位
+	1.距离
+	top: 标签顶部距离其他标签的位置
+	bottom: 标签的底部距离其他标签的位置
+	left: 标签的左边距离其他标签的位置
+	right: 标签的右边到其他标签的位置
+	
+	2.position
+	想要设置标签的top,bottom,left,right的值有效，必须设置标签的参考方法
+	--- initial:（默认值）没有参考对象
+	absolute: 相对第一个position的值是非static,非initial的父标签进行定位
+	relative: 正常位置定位（按标准流定位）
+	fixed: 相对于浏览器定位
+	sticky: 不滚动的时候按标准流布局，滚动的时候相对浏览器定位
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#d1{
+				position: relative;
+				width: 500px;
+				height: 500px;
+				background-color: cadetblue;
+				/*margin-top: 320px;*/
+				/*top: 320px;*/
+				top: 20px;
+			}
+			#d2{
+				position: fixed;
+				width: 100px;
+				height: 100px;
+				background-color: salmon;
+				/*top: 100px;*/
+				right: 20px;
+				bottom: 50px;
+			}
+			#d3{
+				/*float: right;*/
+				position: sticky;
+				/*top: 120px;*/
+				width: 100px;
+				bottom: 20px;
+				/*right: 20px;*/
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+			<div id="d2">
+				
+			</div>
+		</div>
+		
+		<div id="" style="height: 20px; background-color: yellow; width: 200%;">
+			
+		</div>
+		
+		<div id="d3" style="height: 60px; background-color: purple;">
+			
+		</div>
+		
+		
+		
+	</body>
+</html>

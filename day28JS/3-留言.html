@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>留言板</title>
+</head>
+<body>
+    <input id="ip" type="text">
+    <input id="btn" type="button" value="留言">
+    <ul id="content"></ul>
+</body>
+</html>
+<script>
+var oinput = document.getElementById('ip')
+var obtn = document.getElementById('btn')
+var oul = document.getElementById('content')
+
+// console.log(oul.children)
+
+obtn.onclick = function () {
+    // 获取input框的值
+    content = oinput.value
+    // 创建一个li标签
+    var oli = document.createElement('li')
+    // 不仅添加内容，还添加删除功能
+    oli.innerHTML = content + '&nbsp;&nbsp;<a href="javascript:;">删除</a>'
+    // 实现点击删除，删除li的功能
+    var oa = oli.getElementsByTagName('a')[0]
+    oa.onclick = function () {
+        oul.removeChild(oli)
+    }
+
+    // 添加的时候，放到最前面
+    // 获取ul的第一个子标签,通过判断ul的子标签是否为空
+    if (oul.children) {
+        // 非空
+        oul.insertBefore(oli, oul.children[0])
+    } else {
+        // 空
+        oul.appendChild(oli)
+    }
+    // 将input框清空
+    oinput.value = ''
+    // 让input框获得焦点
+    oinput.focus()
+}
+
+// 普通留言板
+/*
+obtn.onclick = function () {
+    // 获取input框的值
+    content = oinput.value
+    // 创建一个li标签
+    var oli = document.createElement('li')
+    oli.innerHTML = content
+    // 将li标签添加到ul里面
+    // oul.appendChild(oli)
+} */
+</script>

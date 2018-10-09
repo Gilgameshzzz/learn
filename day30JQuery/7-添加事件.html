@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加事件</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <div id="dudu" style="width:300px; height:300px; background-color: red;"></div>
+    <div class="didi" style="width:300px; height:300px; background-color: yellow;"></div>
+    <div class="didi" style="width:300px; height:300px; background-color: cyan;"></div>
+</body>
+</html>
+<script>
+$(function () {
+    /*
+    $('.didi').click(function () {
+        alert('滴滴打车我喜欢')
+    })
+    $('#dudu').click(function () {
+        // console.log(this)
+        // 获取到背景色
+        var color = $(this).css('backgroundColor')
+        console.log(color)
+        if (color == 'rgb(255, 0, 0)') {
+            $(this).css('backgroundColor', 'gold')
+        } else {
+            $(this).css('backgroundColor', 'red')
+        } 
+    }) */
+    // 事件绑定
+    // $('#dudu').on('click', function () {
+    //     alert('给我一个粉红的回忆')
+    // })
+    // function lala() {
+    //     alert('夏天夏天悄悄过去')
+    // }
+    // $('#dudu').on('click', lala)
+    // $('#dudu').off('click', lala)
+
+    // 绑定的函数只能执行一次
+    // $('#dudu').one('click', lala)
+})
+</script>

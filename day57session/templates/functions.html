@@ -1,0 +1,13 @@
+{% extends 'base_main.html' %}
+{% block content %}
+{#  宏定义：无参数情况  #}
+    {% macro hello() %}
+        <p>泥猴啊，MM</p>
+    {% endmacro %}
+
+    {#  宏定义：有参数情况  #}
+    {% macro say(name) %}
+        <p>泥猴啊，{{ name }}</p>
+    {% endmacro %}
+
+{% endblock %}

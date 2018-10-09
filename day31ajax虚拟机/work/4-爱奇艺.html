@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{ padding:0; margin:0; list-style:none;}
+	.piclist{ height:410px; width:100%; position:relative;}
+	.piclist li{height:410px; opacity:0; width:100%; position:absolute; top:0; left:0;}
+	.li1{ background:url(img/bg.jpg) center; }
+	.li2{ background:url(img/bg1.jpg) center; }
+	.li3{ background:url(img/bg2.jpg) center; }
+	.li4{ background:url(img/bg3.jpg) center; }
+	.li5{ background:url(img/bg4.jpg) center; }
+	.li6{ background:url(img/bg5.jpg) center; }
+	.li7{ background:url(img/bg6.jpg) center; }
+	.li8{ background:url(img/bg7.jpg) center; }
+	.li9{ background:url(img/bg8.jpg) center; }
+	.li10{ background:url(img/bg9.jpg) center; }
+	.btnlist{ width:200px; height:300px; padding:14px 18px 40px; background:url(img/site-focuslist_bg.png); position:absolute; top:0; right:30px;}
+	.btnlist li{ height:33px; line-height:33px; }
+	.btnlist a{ color:#FFF; font-size:12px; text-decoration:none; display:block; padding-left:10px;}
+	.active{ background:#396;}
+	.piclist .show{ opacity:1;}
+</style>
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+	<ul class="piclist" id="pic">
+    	<li class="li1 show"></li>
+        <li class="li2"></li>
+        <li class="li3"></li>
+        <li class="li4"></li>
+        <li class="li5"></li>
+        <li class="li6"></li>
+        <li class="li7"></li>
+        <li class="li8"></li>
+        <li class="li9"></li>
+        <li class="li10"></li>
+    </ul>
+    <ol class="btnlist" id="btn">
+    	<li class="active"><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+        <li><a href="#">超模：MISS亲授维密性感秘籍</a></li>
+    </ol>
+</body>
+</html>
+<script>
+$(function () {
+    $('#btn > li').mouseover(function () {
+        $(this).addClass('active').siblings().removeClass('active')
+        // 显示对应的图片
+        var index = $('#btn > li').index($(this))
+        // 动画的将透明度修改为1，图片就会显示出来
+        $('#pic > li').eq(index).stop().animate({opacity: 1}, 500).siblings().stop().animate({opacity: 0}, 500)
+    })
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

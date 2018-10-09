@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计数器</title>
+    <style>
+    div {
+        width: 100%;
+        height: 300px;
+        line-height: 300px;
+        text-align: center;
+        font-size: 300px;
+        background-color: pink;
+    }
+    </style>
+</head>
+<body>
+    <div id="dudu">0</div>
+</body>
+</html>
+<script>
+var odiv = document.getElementById('dudu')
+// 定义一个全局变量，用来保存定时器对象
+var timer = null
+// 定义一个全局的计数器
+var i = 0
+odiv.onmouseover = function () {
+    timer = setInterval(function () {
+        i++
+        // 设置div的内容
+        odiv.innerHTML = i
+    }, 1000)
+}
+
+odiv.onmouseout = function () {
+    clearInterval(timer)
+}
+</script>

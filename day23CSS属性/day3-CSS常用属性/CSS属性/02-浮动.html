@@ -1,0 +1,72 @@
+<!--
+	标准流：块标签一个占一行，从上往下布局。默认宽度是100%
+	       行内标签一行可以显示多个，从左往右布局，知道遇到边界就自动换行  
+	       
+	脱流：浮动、定位  
+	1.浮动：就是让竖着显示的标签横着来,块的默认宽度是内容的宽度
+	float: left和right
+	
+	注意:1.如果要使用浮动，那么同一级的所有的标签都要浮动
+		 2.如果父标签浮动，那么子标签的位置会跟着一起动
+		 3.布局基本顺序：从上往下，从左往右
+		
+	
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#top{
+				float: left;
+				background-color: red;
+				/*background-color: rgba(0,0,0,0);*/
+				height: 150px;
+				width: 100%;  
+				
+			}
+			#m1{
+				float: left;
+				
+				height: 500px;
+				width: 20%;
+				background-color: deeppink;
+				/*background-color: rgba(0,0,0,0);*/
+			}
+			#m2{
+				float: left;
+				height: 500px;
+				width: 70%;
+				background-color: goldenrod;
+				/*background-color: rgba(0,0,0,0);*/
+			}
+			#m3{
+				/*float: right;*/
+				height: 500px;
+				/*width: 10%;*/
+				background-color: green;
+			}
+			#bottom{
+				float: left;
+				width: 100%;
+				height: 100px;
+				background: yellowgreen;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div id="top"></div>
+		<div id="m1"></div>
+		<div id="m2">
+			<p>依据《网络安全法》，为保障您的账户安全和正常使用，请尽快完成手机号验证！ 新版《京东隐私政策》已上线，将更有利于保护您的个人隐私</p>
+		</div>
+		<div id="m3">
+			阿是否可江安河上的发
+		</div>
+		<div id="bottom"></div>
+	</body>
+</html>

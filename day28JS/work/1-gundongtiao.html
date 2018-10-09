@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>滚动条效果</title>
+    <style>
+    div {
+        width: 500px;
+        height: 100px;
+        border: 1px dashed black;
+    }
+    #nei {
+        background-color: pink;
+        width: 0px;
+        border: none;
+    }
+    </style>
+</head>
+<body>
+    <h1>滚动条</h1>
+    <button id="btn">点击我</button>
+    <br><br><br>
+    <div>
+        <div id="nei"></div>
+    </div>
+    <span id="per">0%</span>
+</body>
+</html>
+<script>
+var obtn = document.getElementById('btn')
+obtn.onclick = function () {
+    this.disabled = true
+    var onei = document.getElementById('nei')
+    var oper = document.getElementById('per')
+    i = 0
+    // 将#nei这个div的宽度从0慢慢的变成500即可
+    var timer = setInterval(function () {
+        i += 2
+        // 将i设置为nei div的宽度
+        onei.style.width = i + 'px'
+        // 时刻修改span里面的内容
+        oper.innerHTML = (i / 5) + '%'
+        // 判断i有没有达到div宽度
+        if (i == 500) {
+            // 销毁定时器
+            clearInterval(timer)
+            obtn.disabled = false
+        }
+    }, 10)
+}
+</script>

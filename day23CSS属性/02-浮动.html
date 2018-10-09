@@ -1,0 +1,58 @@
+<!--标准流：块标签一个占一行，从上往下布局。
+	行内标签一行可以显示多个，从左往右布局，直到遇到边界就自动换行
+	
+	脱流：浮动、定位
+	1、浮动：就是让竖着显示的标签横着来，块的默认宽度是内容的宽度
+	float：left和right
+	注意:1、如果要使用浮动，那么同一级的所有标签都要浮动
+		2、如果父标签浮动，那么子标签的位置会跟着一起动
+		3、布局基本顺序：从上往下，从左往右
+	
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+		<style type="text/css">
+			#top{
+				float: left;
+				background-color: blue;
+				height: 100px;
+				width: 100%;
+			}
+			#m1{
+				float: left;
+				background-color: darkred;
+				height: 400px;
+				width: 25%;
+			}
+			#m2{
+				float: left;
+				background-color: black;
+				height: 400px;
+				width: 65%;
+			}
+			#m3{
+				float: left;
+				background-color: darkmagenta;
+				height: 400px;
+				width: 10%; 
+				/*如果宽度之和超过100%，最后一个会换行显示*/
+			}
+			#bottom{
+				float: right;
+				background-color: silver;
+				height: 100px;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="top"></div>
+		<div id="m1"></div>	
+		<div id="m2"></div>	
+		<div id="m3"></div>
+		<div id="bottom"></div>
+	</body>
+</html>

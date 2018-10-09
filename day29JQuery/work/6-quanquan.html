@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全选</title>
+</head>
+<body>
+    <li><input type="checkbox">梅西</li>
+    <li><input type="checkbox">c罗</li>
+    <li><input type="checkbox">内马尔</li>
+    <li><input type="checkbox">李哥</li>
+    <li><input type="checkbox">詹姆斯</li>
+    <li><input type="checkbox">罗纳尔多</li>
+    <li><input type="checkbox">库里</li>
+    <li><input type="checkbox">乔治</li>
+    <li><input type="checkbox">维斯布鲁克</li>
+    <li><input type="checkbox">爱新觉罗姚明</li>
+    <button>全选</button>
+    <button>全不选</button>
+    <button>反选</button>
+</body>
+</html>
+<script>
+var ainputs = document.getElementsByTagName('input')
+var abtns = document.getElementsByTagName('button')
+abtns[0].onclick = function () {
+    // 遍历所有的input，将每一个input的checked属性设置为true
+    for (var i = 0; i < ainputs.length; i++) {
+        ainputs[i].checked = true
+    }
+}
+
+abtns[1].onclick = function () {
+    // 遍历所有的input，将每一个input的checked属性设置为true
+    for (var i = 0; i < ainputs.length; i++) {
+        ainputs[i].checked = false
+    }
+}
+
+abtns[2].onclick = function () {
+    // 遍历所有的input，将每一个input的checked属性设置为true或者false
+    for (var i = 0; i < ainputs.length; i++) {
+        ainputs[i].checked = !ainputs[i].checked
+        // if (ainputs[i].checked) {
+        //     ainputs[i].checked = false
+        // } else {
+        //     ainputs[i].checked = true
+        // }
+    }
+}
+</script>

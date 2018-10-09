@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+
+{% block content %}
+
+<p>看见这行字，说明你已经登录成功了</p>
+<p><a href="{% url 'user:logout' %}">注销</a></p>
+
+{% endblock %}

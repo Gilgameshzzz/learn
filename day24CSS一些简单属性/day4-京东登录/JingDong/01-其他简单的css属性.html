@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			a{
+				text-decoration: none;
+			}
+			
+			
+			/*--------背景相关的------*/
+			#d1{
+				background-color: navajowhite;
+				height: 300px;
+				width: 800px;
+				
+				/*1.背景图
+				 * 如果背景图大于盒子的大小，背景图能显示多少就显示多少
+				 * 如果背景图小于盒子的大小，就会平铺（重复显示）
+				*/
+				background-image: url(img/logo.png);
+				
+				/*2.是否平铺*
+				 * 
+				 */
+				background-repeat: no-repeat;
+				
+				/*3.设置背景图的位置
+				 * background-position:x  y;
+				 * x: letf/center/right/坐标值
+				 * y: top/center/bottom/坐标值
+				 */
+				/*background-position: 100px 100px ;*/
+				background-position: center;
+				
+				/*4.同时设值
+				 * background: 图片地址 是否重复 x y
+				 * background: 图片地址 是否重复 x y 背景颜色
+				 */
+				background: url(img/icon.ico) no-repeat center top chartreuse;
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+			
+			
+			
+			/*----------列表-----------*/
+			li{
+				background-color: saddlebrown;
+				float: left;
+				margin-right: 20px;
+			}
+			/*选择器为列表/li都可以*/
+			ul{
+				float: left;
+				background-color: royalblue;
+				/*1.设置符号样式
+				 * disc(实心圆)/circle(空心圆)/square(实心方块)/none(去掉列表符号)
+				 */
+				list-style-type:disc;
+				
+				/*2.设置图片的符号*/
+				list-style-image: url(img/icon.ico);
+				
+				/*3.设置符号的位置
+				 * outside(li标签的外边), inside(li标签的里面)
+				 */
+				list-style-position: outside;
+				
+			}
+			
+			
+			/*--------文字相关----------*/
+			p{
+				/*1.文字大小*/
+				font-size: 20px;
+				
+				/*2.文字颜色*/
+				color: blueviolet;
+				
+				/*3.设置字体名*/
+				font-family: "book antiqua";
+				
+				/*4.设置字体粗细*/
+				/*取值:100-900,normal, bold,bolder*/
+				font-weight:900;
+				
+				/*5.字体倾斜*/
+				font-style: italic; 
+				
+				/*6.内容的对齐方式*/
+				/*center,left,right*/
+				text-align: left;
+				
+				background-color: yellow;
+				/*7.设置行高
+				 * 文字一行的高度（当文字只有一行的时候设置行高和标签的高度一样，可以让文字垂直居中）
+				 */
+				height: 500px;
+				line-height: 40px;
+				
+				/*8.文字修饰*/
+				/*
+				 * none：去掉文字修饰
+				 * underline: 添加下划线
+				 * line-through: 添加删除线
+				 * overline: 添加上划线
+				 */
+				text-decoration: underline;
+				
+				/*9.首行缩进
+				 * 注意单位是em -- 空格
+				 */
+				text-indent: 4em;
+				
+				/*10.字间距*/
+				letter-spacing: 1px;
+				
+				
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		<div id="d1">
+			<!--<img src="img/bg.png" style="width: 100%; height: 300px;"/>-->
+		</div>
+		
+		<ul>
+			<li id="l1">Python</li>
+			<li><a href="">H5</a></li>
+			<li>JAVA</li>
+			<li>测试</li>
+		</ul>
+		
+		<p>
+			已矣乎！寓形宇内复几时？<br />曷不委心任去留？胡为乎遑遑欲何之？<br />富贵非吾愿，帝乡不可期。<br />怀良辰以孤往，或植杖而耘耔。<br />登东皋以舒啸，临清流而赋诗。<br />聊乘化以归尽，乐夫天命复奚疑！
+		</p>
+		
+	</body>
+</html>

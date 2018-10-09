@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.abc{
+				height: 300px;
+				width: 300px;
+				background-color: crimson;
+				text-align: center;
+				font-size: 40px;
+				line-height: 300px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="abc"  style="margin-top: 0px;margin-left: 0px;">
+			点击鼠标拖动
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var odiv = document.getElementsByClassName('abc')[0]
+	var flag = true
+	odiv.onmousedown=function (ev) {
+		 flag = true
+		document.onmousemove = function(ev){
+				if (flag) {
+					var oev =ev|| event
+				odiv.style.marginTop=oev.clientY+'px'
+				odiv.style.marginLeft=oev.clientX+'px'
+				}
+			}
+		}
+		document.onmouseup = function () {
+			if (flag) {
+				flag= false
+			}
+		}	
+		
+	
+</script>

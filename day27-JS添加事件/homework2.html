@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>进度条</title>
+		<style type="text/css">
+			.big{
+				width: 400px;
+				height: 40px;
+				border-style:dashed ;
+			}
+			.small{
+				margin-top: 20px;
+				font-size: 25px;
+			}
+			.bcolor{
+				margin-top: auto;
+			}
+		</style>			
+	</head>
+	<body>
+		<h3>进度条</h3>
+		<button onclick="star()" >进度条</button>
+		<div class="big">
+			<p class="bcolor" style="width: 0px;background-color: chartreuse;height: 40px;">
+			</p>
+		</div>
+		<div class="small">
+			0%
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var width1 =0
+	var num = 0
+	var odiv1 =document.getElementsByClassName('small')[0]
+	var odiv = document.getElementsByClassName('bcolor')[0]
+	function star(){
+		var timer = setInterval(function() {
+			if (width1<=400) {
+			width1 ++
+			num += 0.25
+		}	
+		if (num==100) {
+		clearInterval(timer)
+		}
+			odiv1.innerHTML = num+'%'
+			odiv.style.width = width1 +'px'
+		},100)
+	}
+	
+</script>

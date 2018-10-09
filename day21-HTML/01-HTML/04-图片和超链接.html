@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--1、图片标签(img)
+			a、src属性：图片地址，可以是本地图片地址，也可以是网络图片地址
+			本地地址：绝对路径和相对路径
+			注意：本地图片需要放到工程目录下的img文件
+			
+			b、title属性：图片的标题（鼠标停留在图片上，隔断时间才会显示出来）
+			c、alt属性：图片加载失败后显示的提示信息
+		-->
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534152898399&di=a7b8069f8ae3cf8f514641efc46b43ec&imgtype=0&src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140817%2F138-140QG14408.jpg"  width="500"/>
+		<img alt="图片加载失败" title="背景" src='https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4012153694,2476400460&fm=27&gp=0.jpg'/>
+	
+		<!--2、超链接
+			网页上点击后可以跳转的标签都是超链接
+			href属性：跳转地址（本地地址、网络地址）
+				网络地址：跳转到对应的网页
+				本地地址：当前工程的其他的html文件路径
+				空串或#：刷新页面回到网页的顶部
+				选择器：让网页滚蛋到网页上的任意位置
+				
+			target属性：
+				_self:在当前页面中打开href的地址
+				_blank:在新的页面中打开href的地址
+			
+			a、点击文字跳转
+		-->
+		<a href="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4012153694,2476400460&fm=27&gp=0.jpg" target="_blank">另一张图片</a>
+		<a href="">top</a>
+		<!--点击图片跳转-->
+		<a href="http://www.google.cn/">
+			<img src="http://img5.imgtn.bdimg.com/it/u=2315253564,2144060949&fm=27&gp=0.jpg"/>
+		</a>
+	</body>
+</html>

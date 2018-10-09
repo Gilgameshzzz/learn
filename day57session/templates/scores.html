@@ -1,0 +1,24 @@
+{% extends 'base_main.html' %}
+
+{% block content %}
+    {% from 'functions.html' import hello, say %}
+    {#  宏定义：无参数情况  #}
+    {{ hello() }}
+
+    {#  宏定义：有参数情况  #}
+    {{ say('小狸') }}
+
+        {{ content | safe }}
+        {{ content | safe | length }}
+        {{ content | striptags | capitalize }}
+    <br>
+    {{ stu_scores }}
+    {% for scores in stu_scores %}
+        {# jinja2中没有ifequal, loop.first和loop.last要放在循环里，否则没用 #}
+        {#  序号默认从1开始，从0开始 loop.index0, 倒序loop.revindex      #}
+        <p {% if loop.first %} style="color: aqua;" {% endif %} >
+            序号：{{ loop.index }}
+            成绩：{{ scores }}
+        </p>
+    {% endfor %}
+{% endblock %}

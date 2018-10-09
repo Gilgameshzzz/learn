@@ -1,0 +1,38 @@
+{#继承必须写在第一行，其他填坑内容可以随意顺序写#}
+{% extends 'base_main.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<table>
+    <thead>
+        <th>序号</th> &emsp;
+        <th>姓名</th> &emsp;
+        <th>性别</th> &emsp;
+        <th>年龄</th> &emsp;
+        <th>操作</th> &emsp;
+    </thead>
+    <tbody>
+    {% for stu in students %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ stu.s_name }}</td>
+        <td>{{ stu.s_sex }}</td>
+        <td>{{ stu.s_age }}</td>
+        <td>
+        {#   <a href="/app/del_stu/?id={{ stu.id }}">删除</a> 与下一行一样效果#}
+             <a href="{% url 'app:del_stu' stu.id %}">删除</a>
+            |
+            <a href="{% url 'app:look_stu_info' stu.id %}">查看</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+
+
+

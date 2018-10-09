@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>样式和属性</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+    <style>
+    #dudu {
+        width: 400px;
+        height: 500px;
+        background-color: pink;
+        position: absolute;
+        top: 100px;
+        left: 300px;
+    }
+    </style>
+</head>
+<body>
+    <div id="lala" class="">
+        <b>
+        朝辞白帝彩云间
+        千里江陵一日还
+        两岸猿声啼不住
+        轻舟已过万重山
+        </b>
+    </div>
+    <div class="libai" id="laowang">
+        李白乘舟将欲行
+        忽闻岸上踏歌声
+        桃花潭水深千尺
+        不及汪伦送我情
+    </div>
+    <li><input type="checkbox">抽烟</li>
+    <li><input type="checkbox">喝酒</li>
+    <li><input type="checkbox">烫头</li>
+    <li><input type="checkbox">足疗</li>
+
+    <select name="" id="se">
+        <option value="">请选择</option>
+        <option value="">四川</option>
+        <option value="">河南</option>
+        <option value="">云南</option>
+    </select>
+
+    <input id="ip" type="text" value="请输入用户名哈哈">
+
+    <div id="dudu"></div>
+</body>
+</html>
+<script>
+$(function () {
+    // 可以连写-链式操作
+    // $('#lala').css('backgroundColor', 'red').css('fontSize', '30px')
+    // 可以传递一个js对象，直接全部修改
+    // $('#lala').css({backgroundColor: 'blue', fontSize: '40px'})
+
+    // 获取指定节点的class属性
+    // console.log($('#lala').attr('class'))
+    // 只能获取第一个符合要求的id属性
+    // console.log($('.libai').attr('id'))
+    // 通过eq选择第二个符合要求的id属性
+    // console.log($('.libai:eq(1)').attr('id'))
+    // 给指定节点添加属性
+    // $('#lala').attr('class', 'bai').attr('name', '狗蛋')
+
+    // 将指定节点的属性删除
+    // $('#lala').removeAttr('class')
+
+    // 所有下标大于1的多选框选中
+    // $('input:gt(1)').prop('checked', true)
+    // 将第二个下拉框设置为默认选中
+    // $('#se > option:eq(2)').prop('selected', true)
+
+    // 给指定的节点添加类名
+    // $('#lala').addClass('hei')
+    // 给指定的节点移除指定的节点class名  bai
+    // $('#lala').removeClass('bai')
+
+    // 有bai这个class，那就是删除这个class，没有bai这个class，那就是添加class
+    // $('#lala').toggleClass('bai')
+
+    // 读取或者设置节点内容，和innerHTML功能相同
+    // console.log($('#lala').html('醉卧沙场君莫笑,古来征战几人回'))
+
+    // console.log($('#lala').text())
+    // console.log($('#lala').html())
+
+    // 读取input框里面的内容
+    // console.log($('#ip').val())
+    // 设置input框里面的内容
+    // console.log($('#ip').val('今天中午吃什么呢？'))
+
+    // 读取指定对象宽度  不带px
+    // console.log($('#dudu').width())
+    // 设置宽度  不带px
+    // console.log($('#dudu').width(300))
+    // 读取高度
+    // console.log($('#dudu').height())
+    // 设置高度
+    // console.log($('#dudu').height(400))
+
+    // 获取div的top值和left值
+    // console.log($('#dudu').offset().top, $('#dudu').offset().left)
+})
+</script>

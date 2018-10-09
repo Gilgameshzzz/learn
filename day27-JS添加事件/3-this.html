@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this的使用</title>
+</head>
+<body>
+    <div class="tang" style="width:200px; height:200px; background-color:red"></div>
+    <div class="tang" style="width:200px; height:200px; background-color:blue" onclick="demo(this)"></div>
+</body>
+</html>
+<script>
+    // 点击div，将宽度有200px修改为400px
+    var odiv = document.getElementsByClassName('tang')[0]
+    odiv.onclick = function () {
+        console.log(this)
+        // this就是odiv
+        this.style.width = '400px'
+        // 给div添加内容
+        this.innerHTML = '秦时明月汉时关,万里长征人未还,但使龙城飞将在,不教胡马度阴山'
+    }
+
+    function demo(obj) {
+        // 这里面的this是window，在js里面写的所有的函数都是window的函数，调用demo其实就是  window.demo()
+        console.log(this)
+        // var odiv = document.getElementsByClassName('tang')[1]
+        obj.style.height = '400px'
+    }
+</script>

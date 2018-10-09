@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#click{
+				height: 100px;
+				color: crimson;
+				font-size: 30px;
+				line-height: 100px;
+				text-align: center;
+			}
+			#xuan{
+				width: 100%;
+				margin-left: 40%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="click">
+			<input type="checkbox" class="no.1" >四川
+			<input type="checkbox" class="no.2" >北京
+			<input type="checkbox" class="no.3" >上海
+			<input type="checkbox" class="no.4" >广东
+			<input type="checkbox" class="no.5" >陕西
+		</div>
+		<div id="xuan">
+			<button class="all" >全选</button>
+			<button class='none'>全不选</button>
+			<button class="back">反选</button>
+		</div>
+	</body>
+</html>
+<script src="jquery/jquery-1.11.3.js">
+	$('.all').click(function (){
+		$('#click:checkbox,#xuan').prop('checked',true)
+	})
+</script>

@@ -1,0 +1,112 @@
+<!--选择器
+0. 元素选择器(标签选择器)：标签名
+	选中所有的标签名对应的标签
+1.id选择器：#id属性值
+	每个标签都有一个id属性，整个html中，id的值必须唯一
+	
+2.class选择器：.class属性值
+	每个标签都有一个class属性，
+	
+3.通配符：*
+	选中所有的标签  
+	
+4.层级选择器：选择器1 选择器2...
+
+5.群组选择器：选择器1，选择器，....
+
+
+	
+	
+补充:
+	css中的颜色值：
+	1.颜色英语单词
+	2.16进制的颜色值 0-255 -- 00-ff (#ff0000-红色)
+	3.rgb值：rgb(红,绿,蓝) rgba(红,绿,蓝,透明度) - 透明度 0~1
+-->
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			/*通配符*/
+			*{
+				font-size: 50px;
+			}
+			
+			/*id选择器*/
+			.c1{
+				color: brown;
+				background-color: olive;
+			}
+			
+			/*元素选择器*/
+			a{
+				background-color: yellow;
+			}
+			/*class选择器*/
+			#a1{
+				/*color:#ff0000;*/
+				color:rgba(0,0,255,0.4)
+			}
+			
+			/*层级选择器*/
+			#all_a a{
+				color: pink;
+			}
+			
+			div div a{
+				text-decoration: none;
+			}
+			
+			/*群组选择器*/
+			/*同时选中所有h1标签和所有的span标签*/
+			h1,span{
+				background-color: #FFC0CB;
+			}
+			
+			
+			
+		</style>
+		
+	</head>
+	<body>
+		
+		<h1>我是标题</h1>
+		<span id="">
+			我是span
+		</span>
+		
+		<div >
+			<div id="">
+				<a href="">aaa</a>
+				<p></p>
+			</div>
+			<div id="all_a">
+				<a href="">a1</a>
+				<a href="">a2</a>
+				<a href="">a2</a>
+				<a href="">a2</a>
+				<a href="">a2</a>
+			</div>
+			
+		</div>
+		
+		<a id="a1" href="">我是a</a>
+		<a href="">我是a2</a>
+		
+		
+		<p class="c1">我是p</p>
+		
+		<div id="" class="c1">
+			我是div
+			<a href="">我是a3</a>
+		</div>
+		
+		<a href="">我是a4</a>
+		
+	</body>
+</html>

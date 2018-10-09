@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单</title>
+</head>
+<body>
+    <form action="xxx" method="get" name="goudan">
+        <input type="text" name="user" value="王狗蛋">
+        <!-- <input type="submit" value="提交"> -->
+        <a href="javascript:;" id="aa">登录</a>
+    </form>
+    <form action="" method="post"></form>
+</body>
+</html>
+<script>
+var oa = document.getElementById('aa')
+oa.onclick = function () {
+    document.goudan.submit()
+}
+// 第二种方式
+// console.log(document.forms[1].method)
+// console.log(document.goudan)
+// console.log(document.goudan.user.value)
+</script>

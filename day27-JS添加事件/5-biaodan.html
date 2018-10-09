@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单内容控制</title>
+</head>
+<body>
+    <input id="ip" type="text" value="请输入用户名">
+    <input type="text" value="请输入用户名" onfocus="cleara(this)" onblur="recover(this)">
+</body>
+</html>
+<script>
+    // clear是关键字，不能使用函数名
+function cleara(obj) {
+    // console.log('clear')
+    if (obj.value == "请输入用户名") {
+        obj.value = ''
+    }
+}
+function recover(obj) {
+    if (obj.value == '') {
+        obj.value = '请输入用户名'
+    }
+}
+var oinput = document.getElementById('ip')
+oinput.onfocus = function () {
+    // 判断要不要清空
+    if (this.value == "请输入用户名") {
+        this.value = ''
+    }
+}
+oinput.onblur = function () {
+    // 判断内容是不是为空，如果为空变成下面这个
+    if (this.value == '') {
+        this.value = '请输入用户名'
+    }
+}
+</script>

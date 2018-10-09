@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户注册</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+    <h1>你好，世界！</h1>
+    <input type="text" name="user" id="user">
+    <span id="usertip"></span>
+</body>
+</html>
+<script>
+$(function () {
+    $('#user').blur(function () {
+        // 通过ajax将内容传递给服务端，服务端判断之后，给你个状态，你再去对应的修改你的内容
+        $.ajax({
+            type: "POST",
+            url: "zhuce.php",
+            data: "name=" + $(this).val(),
+            success: function(msg){
+                // msg就是服务端给你的内容
+                var obj = JSON.parse(msg)
+                if (obj.state == 1) {
+                    $('#usertip').html('√').css('backgroundColor', 'green')
+                } else {
+                    $('#usertip').html('该用户已经注册').css('backgroundColor', 'red')
+                }
+            }
+        });
+    })
+})
+</script>

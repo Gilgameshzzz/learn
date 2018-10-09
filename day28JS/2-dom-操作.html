@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>操作</title>
+</head>
+<body>
+    <ul id="girlstar">
+        <li>柳岩</li>
+        <li>高圆圆</li>
+        <li id="rong">马蓉蓉</li>
+    </ul>
+    <ul id="women">
+        <li>韩红</li>
+        <li id="feng">凤姐</li>
+        <li>芙蓉姐</li>
+    </ul>
+    <button id="btn" like="篮球">点我</button>
+</body>
+</html>
+<script>
+var obtn = document.getElementById('btn')
+var oul = document.getElementById('girlstar')
+var owu = document.getElementById('women')
+
+obtn.onclick = function () {
+    // obtn.look = 'goudan'
+    obtn.setAttribute('look', 'goudan')
+    // console.log(obtn.like)
+    // console.log(obtn.getAttribute('like'))
+    // var oli = document.createElement('li')
+    // oli.innerHTML = '柳岩'
+    // oli.className = 'yan'
+    // 动态添加节点
+    // oul.appendChild(oli)
+    // var ofeng = document.getElementById('feng')
+    // var orong = document.getElementById('rong')
+    // oul.appendChild(ofeng)
+    // owu.removeChild(ofeng)
+
+    // oul.insertBefore(ofeng, orong)
+}
+
+</script>

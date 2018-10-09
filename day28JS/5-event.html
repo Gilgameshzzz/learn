@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取事件对象</title>
+</head>
+<body>
+    <div id="dudu" style="width:400px; height:400px; background-color:firebrick"></div>
+</body>
+</html>
+<script>
+    var odiv = document.getElementById('dudu')
+
+    odiv.onclick = function (ev) {
+        // console.log(ev)
+        // alert(ev)
+        var oevent = ev || event
+        // alert(oevent)
+        console.log(oevent.clientX, oevent.clientY)
+    }
+
+    // function test(ev) {
+    //     alert(ev)
+    // }
+    // odiv.onclick = test
+
+    // a = 10
+    // b = 200
+
+    // var c = a && b
+    // console.log(c)
+</script>

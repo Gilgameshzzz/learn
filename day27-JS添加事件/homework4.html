@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.mess{
+				font-size: 70px;
+				text-align:center;
+				color: papayawhip;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="mess" style="width:600px;height:100px;background-color: chartreuse;" onclick="send()">点击发送短信</button>
+	</body>
+</html>
+<script type="text/javascript">
+	var odiv = document.getElementsByClassName('mess')[0]
+	var i = 60
+	function send () {
+		var timer = setInterval(function(){
+			if (i!= 0) {
+				i--
+				odiv.innerHTML=i+'S后可重新发送'
+				odiv.style.backgroundColor = 'crimson'
+			}
+			else{odiv.innerHTML='发送短信'
+				odiv.style.backgroundColor = 'chartreuse'
+				}
+	},1000)
+		if (i<=0) {
+		clearInterval(timer)
+		i = 60
+	}
+	
+	
+	}
+</script>

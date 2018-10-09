@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="bai" class="li" name='wang' style="width:200px; height:200px; background-color:gold"><b>李白乘舟将欲行,忽闻岸上踏歌声,桃花潭水深千尺,不及汪伦送我情</b></div>
+    <a href="www.baidu.com" id="lala"></a>
+</body>
+</html>
+<script>
+var odiv = document.getElementById('bai')
+var oa = document.getElementById('lala')
+// console.log(odiv.style.height)
+// console.log(odiv.style.backgroundColor)
+
+// console.log(odiv.innerHTML)
+// console.log(odiv.innerText)
+// console.log(odiv.style.width)
+// console.log(odiv.style['width'])
+// console.log(odiv['style']['width'])
+
+obj = {name: '王宝强', age: 30}
+console.log(obj.name, obj['name'])
+for (var i in obj) {
+    console.log(obj[i])
+}
+</script>

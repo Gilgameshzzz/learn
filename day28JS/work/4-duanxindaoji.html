@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>短信倒计时</title>
+</head>
+<body>
+    <button id="btn" style="width:400px; height:100px; font-size:50px;">点击发送短信</button>
+</body>
+</html>
+<script>
+var obtn = document.getElementById('btn')
+obtn.onclick = function () {
+    this.disabled = true
+    var i = 5
+    var timer = setInterval(function () {
+        obtn.innerHTML = i + 's之后重新发送'
+        // 判断定时器何时销毁
+        if (i == 0) {
+            clearInterval(timer)
+            obtn.innerHTML = '点击发送短信'
+            obtn.disabled = false
+        }
+        i--
+    }, 1000)
+}
+</script>

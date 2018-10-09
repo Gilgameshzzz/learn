@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.countTime{
+				color: blueviolet;
+				background-color: cyan;
+				width: auto;
+				height: 300px;
+				font-size: 40px;
+				line-height: 300px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="countTime">
+			距离2018-11-11还有a天b小时c分钟d秒
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var odiv = document.getElementsByClassName('countTime')[0]
+	var national = new Date(2018,10,11,0,0,0)
+	
+	
+	var count = setInterval(function(){
+	var today = new Date()
+    var leftTime = national.getTime()-today.getTime()
+	var leftSecond = parseInt(leftTime/1000)
+	var Day = Math.floor(leftSecond / (60 * 60 * 24));
+    var Hour = Math.floor((leftSecond - Day * 24 * 60 * 60) / 3600);
+    var Minute = Math.floor((leftSecond - Day * 24 * 60 * 60 - Hour * 3600) / 60);
+    var Second = Math.floor(leftSecond - Day * 24 * 60 * 60 - Hour * 3600 - Minute * 60);
+	odiv.innerHTML = '距离2018-11-11还有'+ Day+'天'+ Hour+'小时'+Minute+'分钟'+Second+'秒'
+	if (Day < 0) {
+		clearInterval(count)
+	}
+    },1000)
+	
+   
+</script>

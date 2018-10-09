@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>查找</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <div>
+        <ul id="nan">
+            <li id="guan">陈冠希</li>
+            <li id="wu">吴彦祖</li>
+            <li class="feng">谢霆锋</li>
+            <li>梁朝伟</li>
+            <li>李云龙</li>
+            <ol>
+                <li class="lin">关之琳</li>
+                <li class="feng">林青霞</li>
+                <li>王祖贤</li>
+            </ol>
+        </ul>
+    </div>
+
+    <div>
+        <ul>
+            <li>李白</li>
+            <li>杜甫</li>
+            <li>白居易</li>
+        </ul>
+        <ol>
+            <li id="qing">李清照</li>
+            <li class="lin">苏轼</li> 
+            <li>王安石</li>
+            <li class="lin">苏小妹</li>
+        </ol>
+    </div>
+</body>
+</html>
+<script>
+$(function () {
+    // 所有的儿子节点
+    // $('#nan').children().css('backgroundColor', 'red')
+    // 儿子节点中 有 .feng 的节点
+    // $('#nan').children('.feng').css('backgroundColor', 'red')
+
+    // 去子孙节点中查找所有的 .feng 的节点
+    // $('#nan').find('.feng').css('backgroundColor', 'cyan')
+
+    // 指定对象的下一个兄弟节点
+    // $('#wu').next().css('backgroundColor', 'cyan')
+    // 指定对象的后面所有的节点
+    // $('#wu').nextAll().css('backgroundColor', 'cyan')
+
+    // 指定对象的上一个兄弟节点
+    // $('#guan').prev().css('backgroundColor', 'cyan')
+
+    // 找到当前节点的父节点
+    // $('.lin').parent().css('backgroundColor', 'cyan')
+    // 查找得到所有的上层节点
+    // $('#qing').parents().css('backgroundColor', 'cyan')
+    // 查找得到指定的上层节点
+    // $('#qing').parents('div').css('backgroundColor', 'cyan')
+
+    // 查找qing节点所有的兄弟节点
+    // $('#qing').siblings().css('backgroundColor', 'orange')
+    // 查找qing节点所有的兄弟节点，而且是.lin的兄弟节点
+    // $('#qing').siblings('.lin').css('backgroundColor', 'orange')
+})
+</script>

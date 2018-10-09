@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>select下拉框</title>
+</head>
+<body>
+    <select name="刺客" id="sel">
+        <option value="1">阿珂</option>
+        <option value="2">兰陵王</option>
+        <option value="3">孙悟空</option>
+        <option value="4">赵云</option>
+        <option value="5">李白</option>
+    </select>
+    <input type="text" id="ip">
+</body>
+</html>
+<script>
+    var osel = document.getElementById('sel')
+    osel.onchange = function () {
+        // alert('我被出发了')
+        // alert(osel.selectedIndex)
+        alert(osel.options[osel.selectedIndex].innerHTML)
+    }
+
+    var oinput = document.getElementById('ip')
+    oinput.oninput = function () {
+        console.log(this.value)
+    }
+</script>

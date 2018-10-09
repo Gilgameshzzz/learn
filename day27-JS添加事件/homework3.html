@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.time1{
+				position: relative;
+				width: 100%;
+				font-size: 100px;
+				color: crimson;
+				height: 200px;
+				text-align: center;
+				margin-top: 250px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="time1">
+			当前时间是：2018年12月12日   星期天  29:21:30
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var timer = document.getElementsByClassName('time1')[0]
+	setInterval(
+		function(){
+		var d = new Date
+		timer.innerHTML = '当前时间为'+d
+		}
+	,1000)
+	
+</script>

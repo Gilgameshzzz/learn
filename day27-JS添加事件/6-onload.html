@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>onload函数</title>
+    <script>
+        // var a = '岳云鹏'
+        // demo()
+        // onload是window的事件，意思就是等文档加载完毕之后来执行这个代码
+        window.onload = function () {
+            // var odiv = document.getElementById('kong')
+            // console.log(odiv)
+            // odiv.onclick = function () {
+            //     this.style.backgroundColor = 'cyan'
+            // }
+
+            
+        }
+        function demo(obj) {
+            obj.style.backgroundColor = 'cyan'
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="kong" style="width:300px; height:300px; background-color:pink" onclick="demo(this)"></div>
+</body>
+<script>
+    
+    // console.log(a)
+    // function demo() {
+    //     console.log('你喜欢岳云鹏的相声吗?')
+    // }
+</script>
+</html>
+<script>
+    // alert(a)
+    // demo()
+
+    function test() {
+        // function lala() {
+        //     console.log('这是一个内部函数')
+        // }
+        // lala()
+        window.lala = function () {
+            console.log('这是lala函数')
+        }
+    }
+
+
+    test()
+    // test.lala()
+    lala()
+</script>

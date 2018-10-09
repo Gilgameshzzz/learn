@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自动播放选项卡</title>
+    <style>
+        .box {
+            width: 1000px;
+            border: 1px solid gray;
+            margin: 0 auto;
+        }
+        button {
+            width: 170px;
+            height: 100px;
+            font-size: 20px;
+            background-color: pink;
+            margin-left: 55px;
+            display: inline-block;
+        }
+        .box > div {
+            width: 970px;
+            height: 600px;
+            font-size: 50px;
+            background-color: yellow;
+            margin-left: 15px;
+            margin-top: 50px;
+            display: none;
+        }
+        .box > .active {
+            font-size: 30px;
+            background-color: blue;
+        }
+        .box > .show {
+            display: block;
+        }
+        </style>
+</head>
+<body>
+    <div class="box">
+        <button class="active">国产电影</button>
+        <button>韩日电影</button>
+        <button>欧美电影</button>
+        <button>其他电影</button>
+        <div class="show">霸王别姬、卧虎藏龙、大话西游、东邪西毒、无间道、功夫</div>
+        <div>釜山行、汉江怪物、奥特曼、灌篮高手、热血高校、午夜凶铃</div>
+        <div>肖申克的救赎、阿甘正传、敢死队、泰坦尼克号、这个杀手不太冷、盗梦空间</div>
+        <div>三傻大闹宝莱坞、摔跤吧、小萝莉的猴神大叔、厕所英雄</div>
+    </div>
+</body>
+</html>
+<script>
+// 首先找到最外层的box
+var obox = document.getElementsByClassName('box')[0]
+// 找到所有的button
+var abtns = obox.getElementsByTagName('button')
+// 找到所有的div
+var adivs = obox.getElementsByTagName('div')
+
+// 记录要切换的div获取按钮的下标
+var number = 0
+
+// 循环给每一个button添加点击事件
+for (var i = 0; i < abtns.length; i++) {
+    abtns[i].index = i
+    abtns[i].onclick = function () {
+        // 首先清空所有的class
+        for (var j = 0; j < abtns.length; j++) {
+            abtns[j].className = ''
+            adivs[j].className = ''
+        }
+        // 然后给指定的添加class
+        this.className = 'active'
+        adivs[this.index].className = 'show'
+        // 将number更新一下
+        number = this.index
+    }
+}
+
+
+
+// 自动播放代码
+function next() {
+    // 显示下一个需要显示的button和div
+    number++
+    number %= 4
+    // 先清掉所有的样式
+    for (var j = 0; j < abtns.length; j++) {
+        abtns[j].className = ''
+        adivs[j].className = ''
+    }
+    abtns[number].className = 'active'
+    adivs[number].className = 'show'
+}
+var timer = setInterval(next, 1000)
+
+// 如果鼠标放到box上面，将定时器销毁，鼠标离开box的时候，重新创建定时器自动播放
+obox.onmouseover = function () {
+    clearInterval(timer)
+}
+obox.onmouseout = function () {
+    timer = setInterval(next, 1000)
+}
+</script>

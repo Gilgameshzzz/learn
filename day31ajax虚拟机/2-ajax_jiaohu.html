@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>和服务端交互</title>
+</head>
+<body>
+    用户名:<input type="text" name="user" id="user">
+    <br>
+    会员等级:<input type="text" name="level" id="level">
+    <br>
+    会员余额:<input type="text" name="money" id="money">
+    <br>
+    会员年限:<input type="text" name="year" id="year">
+    <br>
+    <button id="btn">点我获取内容</button>
+</body>
+</html>
+<script>
+// 获取按钮
+var obtn = document.getElementById('btn')
+// 找到每一个input
+var ouser = document.getElementById('user')
+var olevel = document.getElementById('level')
+var omoney = document.getElementById('money')
+var oyear = document.getElementById('year')
+// 添加点击事件
+obtn.onclick = function () {
+    // 和服务端交互, 创建ajax对象来交互
+    var xhr = new XMLHttpRequest()
+    xhr.open('get', 'ziliao0.php')
+    xhr.send()
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                // console.log(xhr.responseText)
+                // 将其转化为js对象
+                obj = JSON.parse(xhr.responseText)
+                ouser.value = obj.name
+                olevel.value = obj.level
+                omoney.value = obj.money
+                oyear.value = obj.year
+            }
+        }
+    }
+}
+</script>

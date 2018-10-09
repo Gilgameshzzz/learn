@@ -1,0 +1,38 @@
+<!--选择器的权重
+	类型选择(元素选择器)：0001
+	class选择器：0010
+	id选择器：0100
+	伪类选择器:0001
+	层级(包含)选择器：多个选择器的权重之和
+	群组选择器: 分开看每个选择器的权重
+	
+	谁的权重的值大，谁的优先级就高
+	
+-->
+
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body #d1{
+				color: peru;
+			}
+			.c1{
+				color: deepskyblue;
+			}
+			#d1{
+				color: green;
+			}
+			a{
+				color: red;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<a href=""  id="d1" class="c1">百度一下</a>
+	</body>
+</html>

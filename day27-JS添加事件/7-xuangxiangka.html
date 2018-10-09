@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <style>
+    button {
+        width: 200px;
+        height: 100px;
+        font-size: 40px;
+        background-color: pink;
+        margin-left: 50px;
+        display: inline-block;
+    }
+    div {
+        width: 970px;
+        height: 600px;
+        font-size: 50px;
+        background-color: yellow;
+        margin-left: 50px;
+        margin-top: 50px;
+        display: none;
+    }
+    .active {
+        font-size: 50px;
+        background-color: blue;
+    }
+    .show {
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <button class="active" onclick="dudu(this, 0)">周杰伦</button>
+    <button onclick="dudu(this, 1)">王力宏</button>
+    <button onclick="dudu(this, 2)">张学友</button>
+    <button onclick="dudu(this, 3)">刘德华</button>
+    <div class="show">菊花台、千里之外、七里香、霍元甲、听妈妈的话、稻香、双节棍、简单爱</div>
+    <div>花田错、龙的传人、唯一</div>
+    <div>慢慢、吻别、一千个伤心的理由</div>
+    <div>谢谢你的爱、冰雨、天意、忘情水</div>
+</body>
+</html>
+<script>
+    // 得到所有的button
+    var abuttons = document.getElementsByTagName('button')
+    // 得到所有的div
+    var adivs = document.getElementsByTagName('div')
+    function dudu(obj, index) {
+        // 先将所有的button的class属性设置为空
+        for (var i = 0; i < abuttons.length; i++) {
+            abuttons[i].className = ''
+            adivs[i].className = ''
+        }
+        // 给指定的button添加样式
+        obj.className = 'active'
+        // 给指定的div添加样式
+        adivs[index].className = 'show'
+    }
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选项卡</title>
+		<style type="text/css">
+			#click{
+				height: 100px;
+				color: crimson;
+				font-size: 30px;
+				line-height: 100px;
+				text-align: center;
+			}
+			#xuan{
+				width: 100%;
+				margin-left: 40%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="click">
+			<input type="checkbox" class="no.1" >四川
+			<input type="checkbox" class="no.2" >北京
+			<input type="checkbox" class="no.3" >上海
+			<input type="checkbox" class="no.4" >广东
+			<input type="checkbox" class="no.5" >陕西
+		</div>
+		<div id="xuan">
+			<button class="all" >全选</button>
+			<button class='none'>全不选</button>
+			<button class="back">反选</button>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var odiv = document.getElementById('click')
+	var obn1 = document.getElementsByClassName('all')[0]
+	var obn2 = document.getElementsByClassName('none')[0]
+	var obn3 = document.getElementsByClassName('back')[0]
+	obn1.onclick=function  () {
+		odiv.children[0].checked = 'checked'
+		odiv.children[1].checked = 'checked'
+		odiv.children[2].checked = 'checked'
+		odiv.children[3].checked = 'checked'
+		odiv.children[4].checked = 'checked'
+	}
+	obn2.onclick = function  () {
+		odiv.children[0].checked = false
+		odiv.children[1].checked = false
+		odiv.children[2].checked = false
+		odiv.children[3].checked = false
+		odiv.children[4].checked = false
+	}
+	obn3.onclick = function  (){
+		for (x in odiv.children) {
+			if (odiv.children[x].checked) {
+				odiv.children[x].checked =false
+			}else{
+				odiv.children[x].checked = true
+			}
+		}
+	}
+</script>

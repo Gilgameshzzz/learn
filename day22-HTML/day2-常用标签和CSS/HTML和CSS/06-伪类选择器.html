@@ -1,0 +1,62 @@
+<!--伪类选择器:   选择器:状态
+ 	link: 超链接的初始状态; -- 一次都没有访问成功的时候的状态
+ 	visited: 超链接访问后的状态 --- 已经访问成功后的状态
+ 	hover: 鼠标悬停在标签上对应的状态
+ 	active：鼠标按住的状态
+ 	
+ 	给同一个标签通过伪类选择器给不同状态设置不同的样式的时候，要遵守爱恨原则(先要爱才能恨)
+ 	LoVe HAte
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*同时设置a标签的所有状态*/
+			a{
+				color: black;
+			}
+			
+			a:link{
+				color: green;
+			}
+			a:visited{
+				color: pink;
+			}
+			
+			a:hover{
+				color: red;
+				font-size: 40px;
+			}
+			
+			
+			a:active{
+				color: yellow;
+			}
+			
+			
+			#d1{
+				width: 300px;
+				height: 100px;
+				background: green;
+			}
+			
+			#d1:hover{
+				background-color: greenyellow;
+				
+			}
+			
+			
+		</style>
+		
+		
+	</head>
+	<body>
+		<a href="http://taobao.com">百度一下</a>
+		<button id="d1">
+		</button>
+		
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!--
+	每一个标签都是由4个部分组成：
+	1.内容：显示标签内容的部分，可见的（设置宽和高的值，就是设置内容部分的大小）
+	2.内边距(padding):可见的，不能显示内容（通过设置padding来改变其值，默认是0）
+	3.边框(border):可见的，如果有内边距边框就显示在内边距上，否则显示在内容上
+	4.外边距(margin):不可见的，但是会占据浏览器的空间
+	
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			/*注意：以后在写网页的时候，在样式表的最前面关闭自带的所有的margin和padding*/
+			/**{
+				margin: 0;
+				padding: 0;
+			}*/
+			body,p,a{
+				margin: 0;
+				padding: 0;
+			}
+				
+			#d1{
+				
+				
+				
+				float: left;
+				background-color: sandybrown;
+				/*1. 设置内容大小*/
+				width: 100px;
+				height: 100px;
+				
+				/*2. padding的值有四个
+				 * 可以单独设，也可以一起设
+				 */
+				/*padding-left:20px ;
+				padding-top: 10px;*/
+				padding: 10px;  /*上下左右的内边距都是10*/
+				padding: 20px 40px;  /*上下是20，左右是40*/
+				
+				/*3.边框
+				 * 可以单独设，也可以一起设
+				 * 格式: 宽度 样式 颜色
+				 * a.样式 solid-实线 dotted-点状线  double-双线  dashed-虚线
+				 */
+				
+				/*单独设置一条边框的宽度、样式和颜色*/
+				/*border-left:5px solid red;
+				border-bottom:8px solid green;*/
+				
+				/*同时设置4条边框的宽度、样式和颜色*/
+				border: 3px solid black;
+				
+				/*单独设置某一条边的颜色*/
+				border-left-color: royalblue;  
+				
+				/*设置边框圆角的弧度*/
+				/*border-radius: 5px;*/
+				border-top-left-radius: 30px;
+				border-bottom-right-radius: 30px;
+				
+				
+				/*4.外边距*/
+				/*单独设置每个外边距*/
+				/*margin-top: 100px;
+				margin-left: 50px;
+				margin-right: 100px;*/
+				
+				/*给所有的外边距设置成一样的值*/
+				/*margin:上 右 下 左
+				 *margin: 上/下 右/左
+				 */
+				margin: 20px;
+				
+				
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<div id="d1">
+			abc
+		</div>
+		<div id="" style="height: 100px; width: 100px; background-color: blueviolet; float: left;">
+			
+		</div>
+		
+	</body>
+</html>

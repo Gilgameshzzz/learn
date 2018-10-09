@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;list-style:none;}
+.clearfix:after{display:block;content:'';clear:both;}
+.box{width:360px;height:212px;margin:0 auto;position:relative;overflow: hidden;}
+.ul_list{position:absolute;bottom:20px;left:50%;margin-left:-65px;}
+.ul_list li{float:left;width:20px;height:20px;background:#fff;border-radius:50%;margin-left:5px;border:2px solid red;}
+.pic{width:1800px;}
+.pic img{float:left;}
+.ul_list .active{width:20px;height:20px;background:red;border-radius:50%;margin-left:5px;border:2px solid #fff;}
+</style>
+
+<script src="jquery-1.11.3.min.js"></script>
+</head>
+<body>
+	<div class="box">
+    	<div class="pic clearfix" id='pic'>
+        	<img src="img/1.jpg"/>
+            <img src="img/2.jpg" class="show"/>
+            <img src="img/3.jpg" />
+            <img src="img/4.jpg" />
+            <img src="img/5.jpg" />
+        </div>
+        <ul class="ul_list" id='ul_btn'>
+        	<li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

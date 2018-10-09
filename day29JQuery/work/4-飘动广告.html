@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>飘动广告</title>
+    <style>
+    div {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+    }
+    </style>
+</head>
+<body>
+    <div id="girl">
+        <img src="meinv.jpg" alt="" height="300" width="200">
+    </div>
+</body>
+</html>
+<script>
+var odiv = document.getElementById('girl')
+// 定义偏移量
+var offset_top = 10
+var offset_left = 10
+// 兼容性写法获取非行内样式
+function getStyle(obj, name) {
+    return obj.currentStyle ? obj.currentStyle[name] : getComputedStyle(obj, null)[name]
+}
+
+// 获取可视区的宽度和高度
+// 获取宽高的时候，要看有没有DTD的说明，如果有，使用documentElement，如果没有，使用body
+var clientWidth = document.documentElement.clientWidth
+var clientHeight = document.documentElement.clientHeight
+// console.log(clientWidth, clientHeight)
+
+setInterval(function () {
+    // 动态的修改top和left值
+    // 得到你的top和left值
+    var top = parseInt(getStyle(odiv, 'top'))
+    var left = parseInt(getStyle(odiv, 'left'))
+    top += offset_top
+    left += offset_left
+    // 判断top或则left有没有到达边界
+    if (top + 300 > clientHeight || top < 0) {
+        offset_top = -offset_top
+    }
+    if (left + 200 > clientWidth || left < 0) {
+        offset_left = -offset_left
+    }
+
+    // 再将修改后的值赋值过去
+    odiv.style.top = top + 'px'
+    odiv.style.left = left + 'px'
+}, 5)
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全选</title>
+    <script src="../../day05/jquery/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <li><input type="checkbox">猫和老鼠</li>
+    <li><input type="checkbox">樱桃小丸子</li>
+    <li><input type="checkbox">足球小子</li>
+    <li><input type="checkbox">七龙珠</li>
+    <li><input type="checkbox">美少女战士</li>
+    <li><input type="checkbox">天线宝宝</li>
+    <li><input type="checkbox">海尔兄弟</li>
+    <li><input type="checkbox">葫芦娃</li>
+    <li><input type="checkbox">大头儿子小头爸爸</li>
+    <li><input type="checkbox">蜡笔小新</li>
+    <li><input type="checkbox">十二生肖</li>
+    <button>全选</button>
+    <button>全不选</button>
+    <button>反选</button>
+</body>
+</html>
+<script>
+$('button:eq(0)').click(function () {
+    $('input').prop('checked', true)
+})
+$('button:eq(1)').click(function () {
+    $('input').prop('checked', false)
+})
+$('button').eq(2).click(function () {
+    // 给每一个input都执行each里面匿名函数的操作
+    // 如果写了一个参数i，代表当前遍历的是第i个元素
+    $('input').each(function (i) {
+        // 首先取出来当前这个input的状态
+        var state = $(this).prop('checked')
+        $(this).prop('checked', !state)
+    })
+})
+</script>

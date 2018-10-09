@@ -1,0 +1,55 @@
+
+<!--JS是web的行为标准
+	1、JS是JavaScript的缩写，是一门脚本语言。
+	专门用来负责网页上的行为（可以直接写到网页中）
+	2、在哪写js代码
+	a、可以写在script标签中（理论上script标签可以放到html文件中的任何位置）
+	实际开发的时候一般放在head和body中
+	b、写到标签的事件属性中（例如：onclick）
+	c、写到外部的js文件中（.js）
+	
+	
+	3、js在网页中能做声明事情
+	a、在网页的不同位置插入html代码
+	b、修改某个标签内容
+	c、修改标签的样式
+	
+	
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--导入外部的js文件-->
+		<!--<script src="js基础.js"></script>-->
+		<script src="07-数据类型.js"  ></script>
+		
+		<!--一个html中可以在多个位置插入script标签-->
+		<script type="text/javascript">
+			//在这写js代码
+			function insertP(){
+				document.write('<p>Python</p>')
+			}
+		</script>
+		<h1  id="hh">千峰的所有学科</h1>
+		<button onclick="window.alert('按钮被点击')">按钮被点击</button>
+		
+		<!--修改标签的样式-->
+		<button onclick="document.getElementById('hh').style.color= 'royalblue'">修改样式</button>
+		
+		<!--修改标签内容-->
+		<button onclick="document.getElementById('hh').innerHTML= '千峰所有的老师'">修改内容</button>
+		
+		
+		<!--往html中插入内容-->
+		<script type="text/javascript">
+			
+		
+//			window.alert('你好js')
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加事件</title>
+</head>
+<body>
+    <div style="width:200px; height:200px; background-color:red" onclick="alert('这是一个div')"></div>
+    <div style="width:200px; height:200px; background-color:blue" onclick="test()"></div>
+    <div id="div" style="width:200px; height:200px; background-color:green"></div>
+</body>
+</html>
+<script>
+function test() {
+    console.log('花田里犯了错,说好,破晓前忘掉')
+}
+var odiv = document.getElementById('div')
+// odiv.onclick = function () {
+//     console.log('遥远的东方有一条龙')
+// }
+odiv.onclick = test
+</script>

@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+		li {
+			width:200px;
+			height:50px;
+			line-height:50px;
+			font-size:30px;
+			background-color:pink;
+			list-style:none;
+			margin-left:20px;
+			margin-bottom:20px;
+			text-align:center;
+			float:left;
+		}
+		
+		div {
+			clear:both;
+			margin-left:20px;
+			width:640px;
+			height:400px;
+			font-size:50px;
+			background-color:yellow;
+			display:none;
+		}
+		</style>
+	</head>
+	<body>
+		<li>国内新电影</li>
+		<li>欧美大片</li>
+		<li>日韩微电影</li>
+		<div>超级快递、西游伏妖篇、长城、大闹天竺、功夫瑜伽</div>
+		<div>神奇动物、第一滴血、机械师复活、碟中谍5、敢死队、速度与激情8</div>
+		<div>釜山行、午夜凶铃、自杀教室、你的名字、千与千寻、七龙珠、灌篮高手、海贼王、火影忍者、美少女战士</div>
+	</body>
+	<script>
+	var aLi = document.getElementsByTagName('li');
+	var aDiv = document.getElementsByTagName('div');
+	var timer = null;
+	
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].index = i;
+		aLi[i].onmouseover = function () {
+			for (var j = 0; j < aLi.length; j++) {
+				aDiv[j].style.display = 'none';
+			}
+			//将应该显示的div显示出来  onload  setInterval  alert  getComputedStyle  document
+			var that = this;  //将this先保存起来
+			timer = setTimeout(function () {
+				//alert(this);  //这个this代表的是当前的window
+				aDiv[that.index].style.display = 'block';
+			}, 1000);
+		};
+	}
+	
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].index = i;
+		aLi[i].onmouseout = function () {
+			for (var j = 0; j < aLi.length; j++) {
+				aDiv[j].style.display = 'none';
+			}
+			clearTimeout(timer);
+		};
+	}
+	
+	//window.alert('你好');
+	</script>
+</html>

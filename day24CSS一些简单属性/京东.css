@@ -1,0 +1,265 @@
+/*======0、通用========*/
+*{
+	margin: 0;
+	padding: 0;
+	position: relative;	
+}
+a{
+	text-decoration: none;
+}
+
+
+/*======1、header=====*/
+#head{
+	width: 100%;
+	height: 120px;
+	
+}
+#head  .h-top{
+	width: 100%;
+	height: 80px;
+	/*background-color: hotpink;*/
+}
+
+#head .h-top .icon{
+	position: absolute;
+	left: 142px;
+	/*垂直居中*/
+	height:60px;
+	top: 50%;
+	line-height: 60px;
+	margin: -30px 0 0 0;
+	
+}
+#head  .h-top a{
+	/*布局*/
+	position: absolute;
+	right: 40px;
+	bottom: 10px;
+	/*字体*/
+	font-size: 13px;
+	color:rgb(153,153,153);
+	/*背景图*/
+	background: url(img/q-icon.png) no-repeat ;
+	padding-left: 20px;
+	
+}
+#head  .h-top a:hover{
+	color: red;
+	text-decoration: underline;
+}
+
+#head  .h-bottom{
+	width: 100%;
+	height: 40px;
+	background-color:rgb(255,248,240);
+	/*让内容水平居中*/
+	text-align: center;
+}
+
+#head .h-bottom  div, .top-top{
+	
+	display: inline;
+}
+#head .h-bottom p{
+	height: 40px;
+	line-height: 40px;
+	color: rgb(153,153,153);
+	font-size: 13px;
+	
+	display: inline;
+	
+	/*background: url(img/warning.png) no-repeat ;*/
+}
+#head .h-bottom p a{
+	color: black;
+}
+#head  .h-bottom p  a:hover{
+	text-decoration: underline;}
+
+
+
+/*======2、content=====*/
+#content{
+	width: 100%;
+	height: 514px;
+	background: url(img/TIM.png) no-repeat 20% center;
+	background-color: rgb(11,142,212);
+}
+#content .input_div{
+	width: 344px;
+	height: 438px;
+	background-color: white;
+	position: absolute;
+	right: 160px;
+	top: 10px;
+}
+#content .input_div .input-top{
+	height: 100px ;
+	background-color: rgb(255,248,240);
+	text-align: center;
+	font-size: 13px;
+	color: rgb(153,153,153)
+}
+#content .input_div .input-top .top-bottom{
+	height: 55px;
+	width: 100%;
+	background-color: white;
+	
+	position: absolute;
+	bottom: 1px;
+	/*设置竖线的颜色*/
+	color :rgb(120,120,120);
+	/*设置分割线*/
+	border-bottom: 1px solid rgb(220,220,220);
+}
+#content .input_div .input-top .top-bottom button{
+	width :160px;
+	height: 50px ;
+	/*去掉按钮边框和背景色*/
+	border: 0;
+	background-color: rgba(0,0,0,0);
+	font-size: 20px;
+	color: rgb(53,53,53);
+}
+
+#content .input_div .input-top .top-bottom button:hover{
+	color: red; 
+	
+}
+#content .input_div .input-top .top-bottom button:focus{
+	color: red;
+	/*按钮和输入框成为焦点后，默认的边框是outline*/
+	outline: none;
+}
+
+
+/*登录框的中部*/
+#content .input_div .input-middle{
+	height: 288px;
+}
+
+#content .input_div .input-middle .username,#content .input_div .input-middle .password{
+	width: auto;
+	height: 40px;
+	
+	position: absolute;
+	left: 20px;
+	right: 20px;
+	top: 40px;
+	
+	border: 1px solid  rgb(189,189,189);
+}
+
+#content .input_div .input-middle .password{
+	top: 110px;
+}
+#content .input_div .input-middle img{
+	float: left;
+	height: 100%;
+	border-right: 1px solid  rgb(189,189,189)
+}
+#content .input_div .input-middle input{
+	border: 0;
+	float: left;
+	
+	height: 100%;
+	width: 80%;
+	padding-left: 15px;
+}
+/*设置成为焦点的状态的样式*/
+#content .input_div .input-middle input:focus{
+	outline: none;
+}
+/*忘记密码*/
+#content .input_div .input-middle a{
+	position: absolute;
+	top:180px;
+	right: 20px;
+	font-size: 13px;
+	color: rgb(102,102,102);
+}
+#content .input_div .input-middle a:hover{
+	color: red;
+	text-decoration: underline;
+}
+/*登录框的底部*/
+#content .input_div .input-bottom{
+	height: 50px;
+	background-color: rgb(252,252,252);
+}
+
+
+/*登录按钮*/
+#content .input_div .input-middle .loading input{
+	height:33px ;
+	width: 304px;
+	background-color: rgb(228,57,60);
+	position: absolute;
+	top: 222px;
+	left: 20px;
+	font-size: 20px;
+	color: white;
+	border:1px solid rgb(200, 0, 0);
+	text-align: center;
+}
+#content .input_div .bottom {
+	height:52px ;
+	background-color: rgb(252,252,252)
+	border-bottom: 1px solid rgb(220,220,220);
+} 
+
+#content .input_div .bottom  .list ul li{
+	float: left;
+	font-size: 12px;
+	color: rgb(102,102,102);
+	margin-left:40px ;
+	font-weight: 400px;
+	line-height: 50px;
+	
+}
+#content .input_div .bottom  .list ul .qq{
+	
+	list-style-image: url(day4-京东登录/JingDong/img/qq.png);
+}
+#content .input_div .bottom  .list ul  .weixin{
+	 list-style-image: url(day4-京东登录/JingDong/img/weixin.png);
+}
+
+#content .input_div .bottom  .register a{
+	color: red;
+	line-height: 30px;
+	position: absolute;
+	right: 20px;
+	top:10px;
+	background: url(img/right.png) no-repeat;
+	padding-left:25px ;
+	padding-top: ;
+	
+}
+#content .input_div .bottom  .register a:hover{
+	text-decoration: underline;
+}
+/*======3、footer=====*/
+#footer{
+	width: 100%;
+	height: 86px;
+	background-color: white;
+	color: rgb(102,102,102);
+	font-size: 12px;
+}
+#footer {
+	text-align: center;
+}
+
+#footer ul {
+	overflow: hidden;
+	padding-left: 25%;
+}
+#footer ul li{
+	list-style-type: none;
+	float: left;
+	padding: 3px;
+	
+	text-align: center;
+}

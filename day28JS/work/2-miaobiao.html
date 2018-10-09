@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>NO.2</title>
+		<style type="text/css">
+			#d1{
+				height: 300px;
+				width: 100%;
+				font-size: 300px;
+				color: #FF0000;
+				line-height: 300px;
+				text-align: center;
+				background-color: rgb(100,100,100);
+			}
+			#d2{
+				height: 200px;
+				width: 100%;
+				background-color: rgb(200,200,200);
+			}
+			button{
+				font-size: 50px;
+				border-radius: 10px;
+				color: purple;
+				width: 150px;
+				position: relative;
+				margin-left: 130px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!--2、实现秒表-->
+		<div id="d1">00:00</div>
+		<div id="d2">
+            <button id="btn1">开始</button>
+            <button id='btn2'>暂停</button>
+            <button id="btn3">重置</button>
+		</div>
+	</body>
+</html>
+<script>
+// 前面是秒   后面是10ms
+var ostart = document.getElementById('btn1')
+var ostop = document.getElementById('btn2')
+var oreset = document.getElementById('btn3')
+var odiv = document.getElementById('d1')
+var timer = null
+var i = 0
+// 开始函数
+ostart.onclick = function () {
+    // 周期性定时器一直在修改div的值
+    timer = setInterval(function () {
+        i++
+        // 根据i计算前面的值和后面的值  228  02:28
+        first = parseInt(i / 100)
+        second = i % 100
+        // 将i设置为div后面的值
+        odiv.innerHTML = buling(first) + ':' + buling(second)
+    }, 10)
+}
+
+// 暂停
+ostop.onclick = function () {
+    clearInterval(timer)
+}
+
+// 重置函数
+oreset.onclick = function () {
+    // 清掉定时器
+    clearInterval(timer)
+    // 计数器清零
+    i = 0
+    // 显示也清零
+    odiv.innerHTML = '00:00'
+}
+
+function buling(number) {
+    if (number < 10) {
+        return '0' + number
+    }
+    return number
+}
+</script>

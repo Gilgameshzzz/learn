@@ -1,0 +1,41 @@
+<script>
+/*
+function Person(name, age, height, weight) {
+    this.name = name
+    this.age = age
+    this.height = height
+    this.weight = weight
+    this.say = function () {
+        console.log('我的名字叫做' + this.name + '==我的年龄为' + this.age + '==我的身高为' + this.height + '==我的体重为' + this.weight)
+    }
+}
+obj = new Person('黄晓明', 40, 150, 200)
+obj.say()
+*/
+
+// 创建对象方式2
+// obj = new Object()
+// obj.name = '黄晓明'
+// obj.age = 40
+// obj.height = 150
+// obj.say = function () {
+//     alert('haha')
+// }
+// console.log(obj)
+
+// 创建对象方式3
+// json格式，前后端交互使用的格式，json格式在js里面原生支持
+obj = {name: '王宝强', age: '36', wife: '马蓉蓉'}
+
+// 没有这种写一个class，然后里面写属性写方法这种特点了
+// console.log(obj.name)
+// console.log(obj['name'])
+// 将js里面的对象转化为json格式字符串
+string = JSON.stringify(obj)
+// console.log(typeof(string))
+// js如何将json格式字符串转化为js对象
+// ming = JSON.parse(string)
+ming = eval('(' + string + ')')
+
+console.log(ming)
+</script>

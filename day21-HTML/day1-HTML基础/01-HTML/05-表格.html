@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表格</title>
+	</head>
+	<body>
+		<!--
+			table -- 标签代表这个表格
+			tr  -- 代表的是一行
+			td  -- 代表的是列（一个td对应一个单元格）
+			
+			一个表格中可以有多行，一行有多列
+			
+			table属性:
+			1.border:设置整个表格中边框的宽度
+			2.width:设置整个表格的宽度
+			3.heigt:设置整个表格的高度（每一行的高度是一样的）
+			4.align：center -- 让整个表在其父标签中居中
+			5.bgcolor: 背景颜色
+			6.cellpadding="100": 设置内容和单元格之间的间距(了解)
+			7.cellspacing: 设置 单元格和单元格之间的间隙
+			
+			tr属性:
+			1.height: 设置单独的某一行的高度
+			2.align:center -- 让当前行里面的所有的单元格中的内容居中
+			3.bgcolor: 背景颜色
+			
+			
+			td属性:
+			1.width： 设置某一列的宽度
+			2.align:center -- 让某一个单元格中的内容居中
+			3.bgcolor: 背景颜色
+			
+			
+			
+			注意:所有的属性的值都要用双引号括起来
+		-->
+		<!--创建一个2*3的表格-->
+		<table border="1"  bgcolor='pink' cellspacing="0" bordercolor='purple'>
+			<!--第一行-->
+			<tr height="50" align="center">
+				<!--第一行的第一列-->
+				<td width="80">姓名</td> 
+				<!--第一行的第二列-->
+				<td width="120">成绩</td>
+				<!--第一行的第三列-->
+				<td width="120">是否留级</td>
+			</tr>
+			<!--第二行-->
+			<tr height="100">
+				<td align="center">古双全</td>
+				<td bgcolor="brown">90</td>
+				<td>否</td>
+			</tr>
+			<!--第三行-->
+			<tr height="100" bgcolor='bisque'>
+				<td>100</td>
+				<td>200</td>
+				<td>300</td>
+			</tr>
+			
+		</table>
+		
+		<table border="" cellspacing="" cellpadding="100">
+			
+			<tr>
+				<td>Data</td>
+				<td>100</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

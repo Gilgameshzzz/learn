@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取非行内</title>
+    <style>
+    div {
+        width: 300px;
+        height: 300px;
+        background-color: pink;
+    }
+    </style>
+</head>
+<body>
+    <div id="lala"></div>
+    <input type="text" id="ip">
+    <button onclick="demo()">点我获取div宽度</button>
+</body>
+</html>
+<script>
+var odiv = document.getElementById('lala')
+function demo() {
+    // 获取div的宽度,只能获取行内样式
+    // var kuan = odiv.style.width
+
+    // 获取非行内样式
+    // var kuan = odiv.currentStyle['width']
+    // var kuan = getComputedStyle(odiv, null)['width']
+    var kuan = getStyle(odiv, 'width')
+    // 显示到input框中
+    var oinput = document.getElementById('ip')
+    oinput.value = kuan
+}
+
+// 获取非行内样式的兼容性写法
+function getStyle(obj, name) {
+    return obj.currentStyle ? obj.currentStyle[name] : getComputedStyle(obj, null)[name]
+}
+</script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>一闪一闪亮晶晶</title>
+</head>
+<body>
+    <div id="lala" style="width:300px; height:300px; background-color:red"></div>
+</body>
+</html>
+<script>
+    var odiv = document.getElementById('lala')
+    setInterval(function () {
+        color = odiv.style.backgroundColor
+        if (color == 'red') {
+            odiv.style.backgroundColor = 'yellow'
+        } else {
+            odiv.style.backgroundColor = 'red'
+        }
+    }, 50)
+</script>

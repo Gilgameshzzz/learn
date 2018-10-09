@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BOM操作</title>
+</head>
+<body>
+    <button id="btn">点我</button>
+    <button id="btn1">摸我</button>
+    <button id="btn2">张家辉</button>
+    <button id="btn3">张家辉</button>
+</body>
+</html>
+<script>
+    var obutton = document.getElementById('btn')
+    var obutton1 = document.getElementById('btn1')
+    var obutton2 = document.getElementById('btn2')
+    var obutton3 = document.getElementById('btn3')
+    obutton.onclick = function () {
+        ret = window.confirm('今天晚上准备吃什么')
+        if (ret == true) {
+            console.log('你点击了确定')
+        } else {
+            console.log('你点击了取消')
+        }
+    }
+    obutton1.onclick = function () {
+        window.open('http://www.baidu.com/', '_self')
+    }
+    obutton2.onclick = function () {
+        // window.history.go(2)
+        window.history.back()
+        // file:///C:/Users/ZBLi/Desktop/1805/day02/14-bom.html
+    }
+    obutton3.onclick = function () {
+        // 得到当前的url
+        // console.log(location.href)
+        // location.href = 'http://www.baidu.com/'
+        location.reload()
+    }
+</script>

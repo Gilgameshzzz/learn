@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>表单</title>
+</head>
+<body>
+
+	<!--表单标签
+			1.可以提交表单中收集的信息
+			action属性:设置提交信息的位置
+			method属性：提交方式 - post/get
+		-->
+		
+		<form action="" method="get">
+			
+			<!-- input标签（单标签） -- text(文本输入框)
+				1.是表单标签
+				2.type属性：
+				text - 普通的文本输入框
+				3.name属性: 必须设置（a.用于提交信息）
+				4.value属性: 标签内容
+				5.placeholder属性:占位符（提示信息）
+				6.maxlength: 输入框最多能输入的字符个数
+				7.readonly:readonly - 输入框只读(不能往里面输入内容)
+			-->
+			<input type='text' name="username" value="" readonly="readonly" placeholder="请输入手机号" maxlength="11"/>
+			<!--input标签- 密码输入框
+				1.type属性: password --- 输入的值是密文显示
+			-->
+			<input type="password" name="password" value=""  placeholder="密码" />	
+			
+			
+			<!--input标签：单选按钮
+				1.type属性：radio
+				2.name: 同一类型对应的name值必须一样
+				3.value：设置选中按钮提交的值
+				4.checked: 设置为checked，让按钮默认处于选中状态
+			-->
+			<input type="radio" name="sex" id="" value="boy" checked="checked"/><span>男</span>
+			<input type="radio" name="sex" id="" value="gril" /><span>女</span> 
+			
+			
+			<!--input标签:多选按钮
+				1.type：checkbox
+				2.name：同一类型对应的name值必须一样
+				3.value：设置选中按钮提交的值
+				4.checked: 设置为checked，让按钮默认处于选中状态
+			-->
+			<input type="checkbox" name="interest" id="" value="篮球" /><span>篮球</span>
+			<input type="checkbox" name="interest" checked="checked" id="" value="乒乓球" /><span>乒乓球</span>
+			<input type="checkbox" name="interest" id="" value="看电影" /><span>看电影</span>
+			<input type="checkbox" name="interest" id="" value="旅游" /><span>旅游</span>
+			<input type="checkbox" name="interest" id="" value="游泳" /><span>旅游</span>
+			
+			
+			<!--input标签：普通按钮
+				disabled:disabled - 让按钮不能点击
+			-->
+			<input type="button" name="" id="" value="登录" disabled="disabled"/>
+			
+			<!--input标签：重置按钮
+				让当前所在的form中的所有表单相关标签对应的值，回到最初的状态
+			-->
+			<input type="reset" name="" id="" value="重置全部" /> 
+			
+			
+			<!--input标签:文件选择器-->
+			<input type="file" name="icon" id="icon" value="" />
+			
+			
+			
+			<input type="submit" name="" id="" value="提交" />
+			
+			
+		</form>
+	
+
+</body>
+</html>

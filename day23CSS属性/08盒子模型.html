@@ -1,0 +1,66 @@
+<!--
+	每一个标签都是由4个部分组成：
+	1.内容：显示标签内容的部分，可见的（设置宽和高的值，就是设置内容部分的大小）
+	2、内边距（padding）:可见的，不能显示内容（通过设置padding来改变其值，默认是0）
+	3、边框（border）：可见的，如果有内边距边框就显示在内边距上，否则显示在内容上
+	4、外边距（margin）：不可见的，但是会占据浏览器的空间
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*注意：以后在写网页的时候，在样式表的最前面关闭自带的所有的margin和padding*/
+			/*  
+			   *{margin:0
+			   	padding:0  }
+			 */
+			
+			div{background-color: chartreuse;
+			float: left;
+			/*设置内容大小*/
+			width: 100px;
+			height: 100px;
+			/*padding的值有四个
+			*可以单独设置
+			padding-left: 20px;
+			padding-top: 20px;
+			* 全部设置 */
+			 padding :100px ;/*(上下左右的距离都是10)
+			 padding 20px 40px;(上下的距离是20，左右的距离是40)*/
+			 /*3、边框
+			  *可以单独设置，也可以一起设置
+			  * 格式：宽度 样式 颜色
+			  * a、样式  solid--实线     dotted--点状线    double--双线    dashed--虚线 */
+			 
+			 /*同时设置4条边框的宽度、样式和颜色*/
+			 border:3px double red;
+			 /*单独设置某一条边的颜色*/
+			 border-left: 20px solid  blue;
+			 
+			 /*4、外边距*/
+			/*单独设置每个外边距
+			 * 上  右  下   左*/
+			margin-top: 20px;
+			margin-left:20px ;
+			margin-right:20px ;
+			 
+			 /*5、设置边框圆角*/
+			/*设置所有圆角*/
+			/*border-radius:10px ;*/
+			border-top-left-radius: 20px;  /*左上角*/
+			
+			}
+		</style>
+	</head>
+	<body>
+		<div id="">
+			萨达
+		</div>
+		<div id="">
+			ABCDEFGH			
+		</div>
+	</body>
+</html>

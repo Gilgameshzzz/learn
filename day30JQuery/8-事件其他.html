@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件其他</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <div class="wai" style="width:400px; height:400px; background-color:red;">
+        <div class="nei" style="width:200px; height:200px; background-color:yellow;">
+        </div>
+    </div>
+    <a id="oa" href="http://www.baidu.com/">百度一下</a>
+</body>
+</html>
+<script>
+$(function () {
+    
+    $('.wai').click(function (ev) {
+        // alert('这是外面的衣服')
+        console.log(ev.pageX, ev.pageY)
+    })
+    /*
+    // 取消事件冒泡
+    $('.nei').click(function (ev) {
+        alert('这里里面的衣服')
+        ev.stopPropagation()
+    })*/
+
+    // 阻止默认行为
+    // $('#oa').click(function (ev) {
+    //     alert('悄悄问圣僧,女儿美不美')
+    //     ev.preventDefault()
+    // })
+})
+</script>

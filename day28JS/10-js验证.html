@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js验证</title>
+</head>
+<body>
+    <form action="" name="form">
+        <input type="text" name="user" placeholder="请输入用户名">
+        <span class="user"></span>
+        <br><br>
+        <input type="text" name="password" placeholder="请输入密码">
+        <span class="pwd"></span>
+        <br><br>
+        <input type="text" name="email" placeholder="请输入邮箱">
+        <span class="email"></span>
+        <br><br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
+<script>
+// 找到3个input
+oname = document.form.user
+opwd = document.form.password
+oemail = document.form.email
+
+oname.onblur = function () {
+    var spanname = document.getElementsByClassName('user')[0]
+    // 得到自己的值
+    content = this.value
+    // 用户名长度必须大于等于3位
+    if (content.length < 3) {
+        spanname.innerHTML = '用户名不合法'
+        spanname.style.color = 'red'
+    } else {
+        spanname.innerHTML = '√'
+        spanname.style.color = 'green'
+    }
+}
+
+opwd.onblur = function () {
+    var spanpwd = document.getElementsByClassName('pwd')[0]
+    // 得到自己的值
+    content = this.value
+    // 用户名长度必须大于等于3位
+    if (content.length < 6) {
+        spanpwd.innerHTML = '密码长度不够'
+        spanpwd.style.color = 'red'
+    } else {
+        spanpwd.innerHTML = '√'
+        spanpwd.style.color = 'green'
+    }
+}
+
+oemail.onblur = function () {
+    var spanemail = document.getElementsByClassName('email')[0]
+    content = this.value
+    // test@163.com   lala@sina.cn  1090@qq.com
+    re = /^\w+@\w+\.(com|cn)$/
+    if (!content.match(re)) {
+        spanemail.innerHTML = '邮箱格式不正确'
+        spanemail.style.color = 'red' 
+    } else {
+        spanemail.innerHTML = '√'
+        spanemail.style.color = 'green'
+    }
+}
+</script>

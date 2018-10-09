@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>计数器</title>
+		<style>
+			div{
+				width: 100%;
+				height: 300px;
+				font-size: 300px;
+				text-align: center ;
+				line-height: 300px;
+				background-color: blue
+			}
+			button{
+				position: relative;
+				margin-top: 15px;
+				left: 30%;
+				width: 150px;
+				height: 50px;
+				font-size: 25px;	
+			}
+		</style>
+	</head>
+	<body>
+		<div class="timer">
+		0:0
+		</div>
+		<button class="star1" onclick="star1()">开始</button>
+		<button class="stop" onclick="stop()">暂停</button>
+		<button class="reset" onclick="rest()">重置</button>
+	</body>
+</html>
+<script type="text/javascript">
+	var  j = 0
+	var i = 0
+	var starTime=''
+	var odiv = document.getElementsByClassName('timer')[0]
+	var odiv1 = document.getElementsByClassName('star1')[0]
+	function star1(){
+		 starTime = setInterval(function(){
+			odiv1.disabled='disabled'
+			i++
+			if (i == 60) {
+				j++
+				i = 0
+			}  odiv.innerHTML = j+':'+i
+		},1000)
+	}
+	
+	function stop(){
+		clearInterval(starTime)
+		odiv1.disabled=''
+	}
+	function rest(){
+		i=0
+		j=0
+		odiv1.disabled=''
+	}
+</script>

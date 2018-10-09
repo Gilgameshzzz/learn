@@ -1,0 +1,59 @@
+<!--CSS
+1.什么是CSS
+	CSS是web标准中的表现标准，用设置网页上的标签的样式（长什么样，在哪儿）
+	CSS代码/CSS文件，我们叫样式表
+	
+	目前我们使用的是CSS3。
+	
+2.写在哪儿
+	内联样式表：将css代码写在标签的style属性中
+	内部样式表：写在head标签中的style标签的内容中
+	外部样式表：写在一个css文件中，通过head中的link标签来关联
+	
+	优先级: 内联的优先级最高；内部和外部没有绝对优先，主要看同一个属性谁最后赋值，谁就有效
+	
+	
+3.怎么写(CSS语法)
+选择器{属性:属性值; 属性：属性值;}
+
+选择器： 用来选中需要设置样式的标签
+属性：css属性（css2中的属性有两百多个）
+属性值：如果属性值是数字，表示的是大小要在后面加px
+注意：每个属性之间要使用分号隔开，否则属性无效
+
+
+
+补充属性: color: 设置字体颜色  background-color:设置背景颜色  width：标签的宽度  height：标签的高度
+-->
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+
+		<!--style标签
+			专门用来设置样式的标签
+		-->
+		<style type="text/css">
+			div{
+				background-color: yellowgreen;
+				color: red;
+			}
+		</style>
+		
+		<!--关联外部样式表-->
+		<link rel="stylesheet" type="text/css" href="css/css1.css"/>
+		
+	</head>
+	<body>
+	<!--style属性：每个标签都有-->
+		<div style="">
+			我是div
+		</div>	
+		
+		
+	</body>
+</html>

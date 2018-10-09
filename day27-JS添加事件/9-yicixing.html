@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>凤姐消失</title>
+</head>
+<body>
+    <div id="baby">
+        <img height="800px" src="meinv.jpg" alt="气质美女">
+    </div>
+    <button id="btn">点我给你福利</button>
+</body>
+</html>
+<script>
+    var odiv = document.getElementById('baby')
+    var obtn = document.getElementById('btn')
+    // timer就是一个定时器
+    var timer = setTimeout(function () {
+        odiv.style.display = 'none'
+    }, 5000)
+
+    obtn.onclick = function () {
+        // 清除timer这个定时器
+        clearTimeout(timer)
+    }
+</script>

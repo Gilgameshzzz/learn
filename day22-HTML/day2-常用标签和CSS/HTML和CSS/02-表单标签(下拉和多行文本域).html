@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>下拉菜单和多行文本域</title>
+	</head>
+	<body>
+		<form action="" method="get">
+			<!--fieldset：
+				一个fieldset标签对应一个表单分组
+				legend标签：设置分组名
+			-->
+			<fieldset id="">
+				<legend>账号信息</legend>
+				<input type="text" name="username" id="username" value="" placeholder="用户名" />
+				<input type="password" name="username" id="username" value="" placeholder="密码" />
+				<input type="reset" name="" id="" value="重置1" />
+				
+			</fieldset>
+			
+			<fieldset id="">
+				<legend>反馈信息</legend>
+				<!--1.下拉菜单-->
+				<select name="city">
+					<option value="成都">成都</option>
+					<option value="重庆">重庆</option>
+					<option value="北京">北京</option>
+					<option value="大连">大连</option>
+					<!--selected:设置默认选中-->
+					<option value="青岛" selected="selected">青岛</option>
+				</select>
+			
+			<!--2.多行文本域(多行文本输入框)
+			-->
+				<textarea name="message" rows="2" cols="100" placeholder="请输入意见..." maxlength="200">上次没有发送信息</textarea>
+				<input type="reset" name="" id="" value="重置2" />
+			</fieldset>
+			
+			<input type="submit" name="" id="" value="提交" />
+			
+		</form>
+		
+		
+	</body>
+</html>

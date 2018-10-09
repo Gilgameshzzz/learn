@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom</title>
+</head>
+<body>
+    <div class="hero">
+        <ul id="girl">
+            <li>王昭君</li>
+            <li>杨玉环</li>
+            <li>妲己</li>
+            <li id="can">貂蝉</li>
+            <li id="qiao">大乔</li>
+        </ul>
+        <ol>
+            <li>李白</li>
+            <li>赵云</li>
+            <li>狄仁杰</li>
+            <li>诸葛亮</li>
+        </ol>
+    </div>
+    <div class="san">
+        <ul>
+            <li>关羽</li>
+            <li>张飞</li>
+            <li>赵云</li>
+            <li>马超</li>
+            <li>黄忠</li>
+        </ul>
+        <ol>
+            <li>典韦</li>
+            <li>许褚</li>
+            <li>徐晃</li>
+            <li>张辽</li>
+            <li>夏侯惇</li>
+        </ol>
+    </div>
+</body>
+</html>
+<script>
+    // var odiv = document.getElementsByClassName('hero')[0]
+    // console.log(odiv.children)
+
+    // var oqiao = document.getElementById('qiao')
+    // console.log(oqiao.parentNode)
+
+    var ocan = document.getElementById('can')
+
+    console.log(ocan.parentNode.parentNode.nextElementSibling.firstElementChild.lastElementChild.tagName)
+</script>

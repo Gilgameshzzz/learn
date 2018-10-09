@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示隐藏图片</title>
+</head>
+<body>
+    <div class="tu">
+        <img src="feng.jpg" alt="可爱的凤姐"">
+    </div>
+    <button id="btn">让凤姐消失</button>
+    <button id="btn1" onclick="show()">说你爱我</button>
+</body>
+</html>
+<script>
+// 显示和隐藏图片操作的是div的display属性，在block和none之间切换
+var obutton = document.getElementById('btn')
+obutton.onclick = function () {
+    // 找到指定div，将其display属性修改为none
+    var odiv = document.getElementsByClassName('tu')[0]
+    odiv.style.display = 'none'
+}
+
+function show() {
+    var odiv = document.getElementsByClassName('tu')[0]
+    odiv.style.display = 'block'
+}
+</script>

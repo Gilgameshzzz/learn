@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*------背景-----*/			
+			#d1{background-color: cornflowerblue;
+				height: 400px;
+				/*1、背景图
+				 *如果背景图大于盒子的大小，背景图就能显示多大就显示多大，
+				 * 如果背景图小于盒子的大小，就会平铺/重复显示
+				 且背景图不会随着页面大小而自动缩放、变形*/
+				background-image: url(img/logo.png);
+				
+				/*2、是否平铺*/
+				background-repeat: no-repeat;  /*不平铺*/
+				
+				/*3设置背景图的位置*/
+				background-position: 100px 100px;
+				
+				/*4、同时设置
+				 * background:图片地址  是否重复   x  y 
+				 * background:图片地址  是否重复   x  y 背景颜色
+				 */
+				background: url(img/icon.ico) no-repeat center top blueviolet
+			}
+			
+			a{
+				text-decoration: none;
+			}
+			/*-----------列表相关---------*/
+			ul{ float: left;
+				/*1、设置符号样式
+				 * disc实心圆/circle空心圆/square实心方块/none去掉列表符号
+				 */
+				list-style-type: square;
+				
+				/*2、设置图片的符号*/
+				list-style-image: url(img/qq.png);
+				
+				/*3、设置符号的位置
+				 * outside（li标签的外边），inside（li标签的里面）
+				 * */
+			}	
+				
+			/*-----------文字相关---------*/
+			p{
+				/*1、文字大小*/
+				font-size:30px;
+				
+				/*2、文字颜色*/
+				color: blueviolet;
+				/*3、设置字体样式*/
+				font-family:"楷体";
+				/*4、设置字体粗细*/
+				/*取值：100-900  normal bold bolder*/
+				font-weight: 300;
+				/*5、字体倾斜*/
+				font-style:italic;
+				/*6、内容的对齐方式*/
+				/*center，left,right*/
+				text-align: left;
+				
+				/*7、设置行高
+				 * 文字一行的高度（当文字只有一行的时候设置行高和标签的高度一样，可以让文字垂直居中）
+				 * */
+				background-color: crimson;
+				height: 200px;
+				line-height: 50px;
+				
+				/*8、文字修饰
+				 * none :去除文字修饰
+				 * underline:添加下划线
+				 * line-through:添加删除线
+				 * overline:添加上划线*/
+				text-decoration: none;
+				
+				/*9、首行缩进    单位是：em---空格*/
+				text-indent: 2em;
+				
+				/*10、字间距*/
+				letter-spacing: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+			
+		</div>
+		<p>
+			故国三千里，深宫二十年。<br />
+一声何满子，双泪落君前。 
+		</p>
+		
+		<ul>计算机
+			<li>python</li>
+			<li>Html5</li>
+			<li>JAVA</li>
+			<li>测试</li>
+		</ul>
+		
+	</body>
+</html>

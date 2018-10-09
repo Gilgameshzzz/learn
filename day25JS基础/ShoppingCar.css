@@ -1,0 +1,155 @@
+/*======0、通用========*/
+*{
+	margin: 0;
+	padding: 0;
+	position: relative;	
+}
+a{
+	text-decoration: none;
+}
+.bigall{
+	width: 100%;
+	position: static;
+	line-height: 18px;}
+.all{
+	width: 100%;
+	height: 30px;
+	background-color: rgb(227,228,229);
+}
+/*=======1、head======*/
+/*购物车页顶选项*/
+.w {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 30px;
+	width: 990px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.w  .fl{
+	width: 152px;
+}
+.fl li{
+	list-style-type: none;
+	 color: rgb(153,153,153);
+	 float: left;
+}
+.fl li a {
+	color: rgb(153,153,153);
+	background: url(img/333_03.png)  no-repeat left;
+	padding-left: 18px;
+}
+.fl li a:hover{
+	color:red;
+}
+.fl li span {
+	margin-left: 10px;
+	width: 79px;
+	background: url(img/333_06.png) no-repeat left;
+	padding: 17px;
+}
+.fr{
+	
+	width: 718px;
+	margin-left: auto;
+}
+.fr li{
+	float: right;
+	color: rgb(153,153,153);
+	list-style-type: none;
+	padding-right: 15px;
+}
+
+/*logo部分*/
+.logo{
+	
+	height: 87px;
+	padding-top: 45px;
+	width: 990px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 20px;
+	color: rgb(51,51,51);
+}
+.logo a{
+	width: 134px;
+	height: 42px;
+	}
+.logo span{
+	bottom: 5px;
+	color: rgb(51,51,51);
+}
+.logo .form {
+	margin-top: 33px;
+	float: right;
+	width: 322px;
+	height: 24px;
+	line-height: 18px;
+	background-color: rgb(201,22,35);
+	border:2px solid rgb(201,22,35);
+}
+.logo .form .txt{
+	height: 18px;
+	width: 260px;
+	padding: 3px 5px;
+	border: none;
+}
+.logo .form .button{
+	width: 40px;
+	height: 24px;
+	border: none;
+	background-color: rgba(0,0,0,0);
+	color: white;
+	font-weight: 800;
+}
+
+
+/*中间物品*/
+.middle{
+	/*假定设置一个数*/
+	height: 1000px;
+}
+
+
+/*最底部*/
+.button-button{
+	width: 100%;
+	height: 547px;
+	background-color: rgb(227,228,229);
+}
+.button-button .things{
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 30px;
+	width: 990px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: rgb(227,228,229);
+}
+.slogen{float: left;
+height: 102px;
+width: 990px;
+margin-left: 55px;
+}
+.slogen li{
+	margin-top: 30px;
+	position: relative;
+	width: 224px;
+	float: left;
+	line-height: 42px;
+	list-style-type: none;
+	font-size: 17px;
+	font-weight: bolder;
+}
+.slogen li span{
+	padding-left: 8px;
+	bottom: 15px;
+}
+.wrap {
+	width: 1330px;
+	height:500px ;
+}
+.wrap dl{
+	float: left;
+	
+}

@@ -1,0 +1,53 @@
+
+<!--1.垂直居中
+	a.固定标签高度
+	b.设置line-height的值和高度一样
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#d1{
+	
+				height: 100px;
+				width: 100%;
+				line-height: 100px;
+				background-color: hotpink;
+				text-align: center;
+				
+			}
+			#p1{
+		
+				display: inline-block;
+				/*垂直居中*/
+				height: 50px;
+				line-height: 50px;
+				
+				width: 300px;
+				background-color: green;
+				
+				/*水平居中*/
+				text-align: center;
+				
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="d1">
+			<div id="p2">
+				<p id="p1">床前明月光,疑是地上霜</p>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

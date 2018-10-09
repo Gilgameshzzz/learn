@@ -1,0 +1,39 @@
+<script>
+    // var a = function () {
+    //     alert('天青色等烟雨，而我在等你')
+    // }
+    // a()
+
+    // var a = function () {
+    //     alert('这是一个函数')
+    // }
+    // a()
+    // var b = a
+    // b()
+
+    // function demo() {
+    //     alert('哈哈哈')
+    // }
+    // var a = demo
+    // a()
+
+    function add(m, n) {
+        return m + n
+    }
+    function sub(m, n) {
+        return m - n
+    }
+
+    function cacl(m, n, fn) {
+        return fn(m, n)
+    }
+
+    // alert(cacl(100, 200, sub))
+    alert(cacl(100, 200, function (m, n) {
+        return m * n
+    }))
+
+    // (function (m, n) {
+    //     alert('炊烟袅袅升起,隔江千万里===' + m + n)
+    // })('周杰伦', '双节棍')
+</script>

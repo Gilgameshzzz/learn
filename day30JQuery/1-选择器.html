@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择器</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>黄晓明</li>
+        <li>关晓彤</li>
+        <li>李小龙</li>
+        <li>李小璐</li>
+        <li>高晓松</li>
+        <li><a href="#">陈妍希</a></li>
+    </ul>
+    <ol>
+        <!-- <b>桃谷绘里香</b> -->
+        <li>苍老师</li>
+        <li>小泽玛利亚</li>
+        <li>波多野结衣</li>
+        <li>大桥未久</li>
+        <li>泷泽萝拉</li>
+    </ol>
+    <div>那些年我们一起追过的女孩</div>
+    <input type="text" name="user">
+    <input type="password" name="userpwd">
+    <!-- <input type="checkbox" name="like">
+    <input type="radio" name="sex"> -->
+    <input type="text">
+</body>
+</html>
+<script>
+$(function () {
+    // $('li:contains("晓")').css('backgroundColor', 'cyan')
+
+    // 找li标签，li标签里面有a的节点
+    // $('li:has(a)').css('backgroundColor', 'cyan')
+    // 找ul标签，里面有a的节点，不论层级
+    // $('ul:has(a)').css('backgroundColor', 'cyan')
+
+    // 有属性name的input
+    // $('input[name]').css('backgroundColor', 'cyan')
+    // 属性name值为user的input
+    // $('input[name=user]').css('backgroundColor', 'cyan')
+    // 属性name值不为user的input
+    // $('input[name!=user]').css('backgroundColor', 'cyan')
+    // 属性name值以user开头的input
+    // $('input[name^=user]').css('backgroundColor', 'cyan')
+    // 属性name值以user结束的input
+    // $('input[name$=user]').css('backgroundColor', 'cyan')
+
+    // 找到li标签，li是第一个儿子节点的li标签
+    // $('li:first-child').css('backgroundColor', 'cyan')
+    // 找到li标签，li是最后一个儿子节点的li标签
+    // $('li:last-child').css('backgroundColor', 'cyan')
+    // 找li标签，找指定下标的li标签，这个下标是儿子节点里面的第几个
+    // $('li:nth-child(1)').css('backgroundColor', 'cyan')
+})
+</script>

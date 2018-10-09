@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>筛选和查找</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li class="jing">王静</li>
+        <li>闫晓红</li>
+        <li class="jing">刘慧芳</li>
+        <li>李琳</li>
+    </ul>
+</body>
+</html>
+<script>
+$(function () {
+    // var n = 1
+    // 选中第几个，eq里面可以写一个变量
+    // $('li').eq(n).css('backgroundColor', 'red')
+    // $('li:eq(0)').css('backgroundColor', 'red')
+    // $('li:eq(' + 0 + ')').css('backgroundColor', 'red')
+
+    // 第一个li   和:first 一模一样
+    // $('li').first().css('backgroundColor', 'red')
+    // 最后一个li   和:last 一模一样
+    // $('li').last().css('backgroundColor', 'red')
+
+    // 判断有没有这个class,有就返回true，没有返回false
+    // console.log($('li').eq(0).hasClass('wang'))
+
+    // 找到所有li，过滤出来 .jing 的这些li
+    // $('li').filter('.jing').css('backgroundColor', 'cyan')
+
+    // 取出符合要求li里面的第0个和第1个   [start, end)
+    // $('li').slice(0, 2).css('backgroundColor', 'cyan')
+})
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>处理classname兼容</title>
+</head>
+<body>
+    <div id="tang">
+        <div class="song yuan qing"></div>
+        <div class="song"></div>
+        <div class="ming"></div>
+    </div>
+    <div class="song"></div>
+    <div class="song"></div>
+</body>
+</html>
+<script>
+    // var adivs = document.getElementsByClassName('song')
+    var odiv = document.getElementById('tang')
+    // var adivs = odiv.getElementsByClassName('song')
+
+    // console.log(adivs)
+
+    
+
+//*
+function getByClassName(obj, classname) {
+    // 首先找到所有的标签
+    var abiaos = obj.getElementsByTagName('*')
+    // 定义一个数组，用来保存符合要求的节点对象
+    var arr = []
+    // 遍历每一个标签，将标签的内容得到
+    for(var i = 0; i < abiaos.length; i++) {
+        // 得到当前对象的class
+        var leiming = abiaos[i].className
+        // 将leiming这个字符串按照空格切割
+        var arr1 = leiming.split(' ')
+        // 遍历所有的类名，判断有没有classname, 有的话就要这个节点，没有就不要这个节点
+        for (var j = 0; j < arr1.length; j++) {
+            if (arr1[j] == classname) {
+                arr.push(abiaos[i])
+            }
+        }
+    }
+    return arr
+} //*/
+
+console.log(getByClassName(odiv, 'song'))
+
+// console.log('song'.split(' '))
+</script>

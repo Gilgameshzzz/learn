@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跟随鼠标移动</title>
+
+</head>
+<body>
+    <!-- <div id="girl" style="position: absolute; top: 0px; left: 0px; background-color: red; width: 300px; height: 300px;"> -->
+    <div id="girl" style="position: absolute; top: 0px; left: 0px;">
+        <img src="meinv.jpg" alt="" height="300" width="200">
+    </div>
+</body>
+</html>
+<script>
+var odiv = document.getElementById('girl')
+odiv.onmousedown = function (ev) {
+    var oevent = ev || event
+    // 首先得到图片的左边距和上边距
+    var divleft = parseInt(odiv.style.left)
+    var divtop = parseInt(odiv.style.top)
+
+    // console.log(divleft, divtop)
+    // 在这获取鼠标点击的时候，左边的间距和上边的间距
+    var offsettop = oevent.clientY - divtop
+    var offsetleft = oevent.clientX - divleft
+    // console.log(offsettop, offsetleft)
+
+    document.onmousemove = function (ev) {
+        var oe = ev || event
+        console.log(ev.clientX, ev.clientY)
+        // 修改div的top和left值
+        odiv.style.top = (oe.clientY - offsettop) + 'px'
+        odiv.style.left = (oe.clientX - offsetleft) + 'px'
+    }
+    return false
+}
+
+odiv.onmouseup = function () {
+    document.onmousemove = null
+}
+
+
+</script>

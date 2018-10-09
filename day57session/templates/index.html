@@ -1,0 +1,14 @@
+{% extends 'base_main.html' %}
+
+{% block js %}
+{# Django继承 {{ block super }}, 而flask继承 {{ super() }}   #}
+    {{ super() }}
+{#    第一种：引入js   #}
+    <script src="/static/js/style.js"></script>
+{#    第二种：django中{% static‘xxx.js’ %}   #}
+    <script src="{{ url_for('static', filename='js/style.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+   <p> This is an index surface</p>
+{% endblock %}

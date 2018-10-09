@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax实现</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+// 原生的js实现ajax的技术
+// 创建对象,
+// XMLHttpRequest是高级浏览器创建ajax对象的方式
+// IE8以下的创建方式不一样，只需了解即可
+var xhr = new XMLHttpRequest()
+// 和后端进行交互，交互的方式有两种，pc端：get、post  移动端：get、post、put、delete等
+// 发送get请求 
+// 参数1：请求方式
+// 参数2：处理这个请求的文件，或者url
+// 这样就将请求发送过去了
+// xhr.open('get', 'url')
+// xhr.send()
+
+// post方式如何发送
+xhr.open('post', 'url')
+// 发送post，必须要添加这个东西
+xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+// 在发送send的时候，需要将要传递的参数写进来
+xhr.send('name=狗蛋&password=123')
+
+// 服务端返回数据给你，要使用下面的代码
+// ajax在发送请求的时候，状态会改变，会触发这个事件
+xhr.onreadystatechange = function () {
+    // 4是固定的，代表的意思是请求发送成功
+    if (xhr.readyState == 4) {
+        // 当响应也成功的时候，就可以获取数据了,去判断响应状态码  404
+        if (xhr.status == 200) {
+            // 获取响应的内容
+            var content = xhr.responseText
+            // 响应内容一般都是json格式的字符串
+            // 你的工作就是解析json字符串，将内容填充到html中
+            // 首先将json格式字符串转化为js对象
+            var obj = JSON.parse(content)
+            // var obj = eval('(' + content + ')')
+        }
+    }
+}
+</script>

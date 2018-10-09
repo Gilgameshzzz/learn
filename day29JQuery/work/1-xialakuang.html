@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>下拉框实现</title>
+</head>
+<body>
+    <select name="" id="man" size="10" multiple="1" style="width:200px;">
+        <option value="">秦始皇</option>
+        <option value="">汉武帝</option>
+        <option value="">唐太宗</option>
+        <option value="">明太祖</option>
+        <option value="">毛主席</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select name="" id="woman" size="10" multiple="1" style="width:200px;">
+        <option value="">西施</option>
+        <option value="">王昭君</option>
+        <option value="">杨玉环</option>
+        <option value="">貂蝉</option>
+        <option value="">宋美龄</option>
+    </select>
+    <br><br><br>
+    <input id="btn1" type="button" value="移动到右边" style="margin-left:40px;">
+    <input id="btn2" type="button" value="移动到左边" style="margin-left:180px;">
+</body>
+</html>
+<script>
+var oman = document.getElementById('man')
+var owoman = document.getElementById('woman')
+// 移动到右边的代码
+var obtn1 = document.getElementById('btn1')
+obtn1.onclick = function () {
+    // 得到选中框的下标
+    // alert(oman.selectedIndex)
+    var index = oman.selectedIndex
+    // 得到选中的option框
+    var ooption = oman.options[index]
+    // 将选中的框，添加到owoman中
+    owoman.appendChild(ooption)
+}
+// 移动到左边的代码
+var obtn2 = document.getElementById('btn2')
+obtn2.onclick = function () {
+    // 得到选中框的下标
+    // alert(oman.selectedIndex)
+    var index = owoman.selectedIndex
+    // 得到选中的option框
+    var ooption = owoman.options[index]
+    // 将选中的框，添加到owoman中
+    oman.appendChild(ooption)
+}
+
+
+</script>

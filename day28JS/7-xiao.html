@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小知识</title>
+</head>
+<body>
+    <a id="du" href="http://www.baidu.com/">百度一下</a>
+</body>
+</html>
+<script>
+    // document.onkeydown = function (ev) {
+    //     var oevent = ev || event
+    //     console.log(oevent.keyCode)
+    // }
+    document.onkeypress = function (ev) {
+        var oevent = ev || event
+        console.log(oevent.keyCode)
+    }
+    // var oa = document.getElementById('du')
+    // oa.onclick = function (ev) {
+    //     alert('这次第,怎一个愁字了得')
+    //     var oevent = ev || event
+    //     // oevent.returnValue = false
+    //     // oevent.preventDefault()
+    //     return false
+    // }
+// document.oncontextmenu = function () {
+//     return false
+// }
+</script>

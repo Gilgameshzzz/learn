@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文档处理</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <ul id="car">
+        <li>长安奔奔</li>
+        <li>五菱宏光</li>
+        <li id="mao">吉利熊猫</li>
+        <li>大众捷达</li>
+        <li>丰田卡罗拉</li>
+        <li>奇瑞qq</li>
+    </ul>
+</body>
+</html>
+<script>
+$(function () {
+    // 向父节点添加子节点
+    // $('#car').append('<li>本田飞度</li>')
+    // 通过子节点调用，添加到父节点
+    // $('<li>本田飞度</li>').appendTo($('#car'))
+    // 通过父节点调用，添加到父节点的最前面
+    // $('#car').prepend('<li>本田飞度</li>')
+    // 通过子节点调用，添加到父节点的最前面
+    // $('<li>通用别克</li>').prependTo($('#car'))
+
+    // 是兄弟节点关系，在mao节点后面添加一个指定节点
+    // $('#mao').after('<li>铃木雨燕</li>')
+    // 是兄弟节点关系，在mao节点前面添加一个指定节点
+    // $('#mao').before('<li>铃木雨燕</li>')
+
+    // $('#mao').insertAfter('<li>铃木雨燕</li>')
+
+    // 清空指定节点里面的内容，节点还在
+    // $('#mao').empty()
+    // 原生js中：父节点.removeChild(子节点)
+    // 通过子节点直接调用，删除当前节点
+    // $('#mao').remove()
+})
+</script>

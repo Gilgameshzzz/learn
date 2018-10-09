@@ -1,0 +1,63 @@
+<!--
+	1.js是javaScript的缩写，是一门脚本语言。专门用来负责网页上的行为（可以直接写到网页中）。
+	
+	2.在哪儿写js代码
+	a.可以写在script标签中（理论上script标签可以放到html文件中的任何位置,实际开发的时候一般放在head或者body中）
+	b.写到标签的事件属性中（例如：onclick）
+	c.写到外部的js文件中（.js）
+	
+	3.js在网页中能做什么事情
+	a.在网页的不同的位置插入html代码
+	b.修改某个标签的内容
+	c.修改标签的样式
+	
+	4.怎么写
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		
+		<!--导入外部的js文件-->
+		<!--<script src="js/index.js"></script>-->
+		<script src='js/07-数据类型.js'>
+			
+		</script>
+		
+		<!--一个html中可以在多个位置插入script标签-->
+		<script type="text/javascript">
+			// 在这儿写js代码
+			function insertP(){
+				document.write('<p>python</p>')
+			}
+		</script>
+		
+	</head>
+	<body>
+		
+		<h1 id="hh">千锋的所有学科</h1>
+		
+		<button onclick="window.alert('按钮被点击')"></button>
+		
+		<!--修改标签的样式-->
+		<button onclick="document.getElementById('hh').style.color = 'red'">修改样式</button>
+		
+		<!--修改标签内容-->
+		<button onclick="document.getElementById('hh').innerHTML='千锋的所有老师'">修改内容</button>
+		
+		<!--往html中插入内容-->
+		<script type="text/javascript">
+			for (var i = 0; i <100; i++) {
+				document.write("<p>按施工队</p>")
+			}
+		</script>
+		
+		
+	</body>
+	
+	
+</html>
+
+

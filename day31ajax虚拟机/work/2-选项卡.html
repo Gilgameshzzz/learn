@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <style>
+    button {
+        width: 200px;
+        height: 100px;
+        font-size: 40px;
+        background-color: pink;
+        margin-left: 50px;
+        display: inline-block;
+    }
+    div {
+        width: 970px;
+        height: 600px;
+        font-size: 50px;
+        background-color: yellow;
+        margin-left: 50px;
+        margin-top: 50px;
+        display: none;
+    }
+    .active {
+        font-size: 50px;
+        background-color: blue;
+    }
+    .show {
+        display: block;
+    }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+    <button class="active">周杰伦</button>
+    <button>王力宏</button>
+    <button>张学友</button>
+    <button>刘德华</button>
+    <div class="show">菊花台、千里之外、七里香、霍元甲、听妈妈的话、稻香、双节棍、简单爱</div>
+    <div>花田错、龙的传人、唯一</div>
+    <div>慢慢、吻别、一千个伤心的理由</div>
+    <div>谢谢你的爱、冰雨、天意、忘情水</div>
+</body>
+</html>
+<script>
+$('button').click(function () {
+    // 先将所有的class去掉，然后给指定的添加
+    // $('button').removeClass('active')
+    // $(this).addClass('active')
+    $(this).addClass('active').siblings().removeClass('active')
+    // 应该显示第几个div
+    var index = $('button').index($(this))
+    // 将指定的div添加样式，其他div删除样式
+    $('div').eq(index).addClass('show').siblings().removeClass('show')
+})
+</script>

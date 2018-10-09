@@ -1,0 +1,48 @@
+<!--
+	1.HTML中标签分为块和行内
+	2.CSS中中标签分为3类：块、行内块、行内（display）
+	（在标准流中）
+	block:块（一个占一行，默认宽度是100%，高度默认根据内容来确定；直接设置宽高有效）
+	inline-block:行内块(一行可以有多个，默认宽高是内容的宽高；直接设置宽高有效)
+	inline:行内(一行可以有多个，默认宽高是内容的宽高；设置宽高无效)
+	
+	通过改变标签的display的值，可以让一个标签在块、行内块个行内之间任意切换
+	
+	
+	注意：inline-block标签的右边默认都有一个间隙，不能和其他标签无缝连接(这个间隙目前没有办法清除)
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				/*display: block;*/
+				background-color: hotpink;
+				width: 200px;
+				height: 100px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<input type="text" name="" id="" value=""  style="width: 100px;height: 100px; display: block;"/>
+		<span id="" style="background-color: wheat; width: 300px; height: 100px;">
+			ABC拿到的
+		</span>
+		<span id="" style="background-color: brown; display: inline-block;">
+			ABC拿到的
+		</span>
+		
+		<p id="" style="display: inline-block;">
+			aaa 	<br />
+			bbb
+		</p>
+		<span id="">
+			ajssjjdh
+		</span>
+		
+	</body>
+</html>

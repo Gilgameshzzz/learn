@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    {% load static %}
+{#    <link rel="stylesheet" href="/static/css/index.css">#}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/xxx.js' %}"></script>
+</head>
+<body>
+<h2>你好</h2>
+<p>FateZero</p>
+<table>
+    <thead>序号</thead> &emsp;
+    <thead>姓名</thead> &emsp;
+    <thead>性别</thead> &emsp;
+    <thead>年龄</thead> &emsp;
+</table>
+
+    {% for student in students %}
+        <tr>
+        <td>{{ forloop.counter }}</td>&emsp;
+        <td>{{ student.s_name }}</td>&emsp;
+        <td>{{ student.s_sex }}</td>&emsp;
+        <td>{{ student.s_age }}</td>&emsp;<br>
+        </tr>
+    {% endfor %}
+
+</body>
+</html>

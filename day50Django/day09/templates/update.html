@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        　　<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        function update_stu() {
+                var sid = $('#sid').val()
+                var name = $('#name').val()
+                var  age = $('#age').val()
+                $.ajax({
+                     url:'/users/student/',
+                    type:'PATCH',
+                    data:{},
+                    dataType:'json',
+                    success:function (data) {
+                        var results = data.results
+                        for (var i = 0; i<results.length; i++){
+                            if (results[i].id == sid){
+                                results[i].s_name = name
+                                results[i].s_age = age
+                                results[i].save()
+                            }
+                        }
+                    },
+                    error:function (data) {
+                        alert('请求失败')
+                    }
+                })
+        }
+    </script>
+</head>
+<body>
+
+
+<p>学生id：<input type="text" id="sid"></p>
+<p>姓名：<input type="text" id="name"></p>
+<p>年龄：<input type="text" id="age"></p>
+<p><input  type="button" onclick="update_stu();" value="提交"></p>
+
+
+</body>
+</html>
