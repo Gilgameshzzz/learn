@@ -1,0 +1,111 @@
+{% extends 'base_main.html' %}
+
+{% block title %}
+爱家-房间信息
+   {% endblock %}
+{% block js %}
+    {{ super() }}
+    <script src="/static/js/ihome/detail.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="top-bar">
+            <div class="nav-bar">
+                <h3 class="page-title">房间信息</h3>
+                <a class="nav-btn fl" href="#" onclick="hrefBack();"><span><i class="fa fa-angle-left fa-2x"></i></span></a>
+            </div>
+        </div>
+        <div class="swiper-container", id="swiper-container">
+                <div class="swiper-container" id="swiper-container">
+                    {% raw %}
+                    <script id="img_temp_script" type="text/html">
+                    <ul class="swiper-wrapper">
+                        {{ each oimg.images as img }}
+                        <li class="swiper-slide"><img src="/static/media/{{ img }}"></li>
+                        {{ /each }}
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="house-price">￥<span>{{ oimg.price }}</span>/晚</div>
+                     </script>
+                    {% endraw %}
+                </div>
+        </div>
+        <div class="detail-con">
+
+        </div>
+        <a class="book-house" href="">即刻预定</a>
+        <div class="footer">
+            <p><span><i class="fa fa-copyright"></i></span>爱家租房&nbsp;&nbsp;享受家的温馨</p>
+        </div>
+    </div>
+
+
+    {% raw %}
+
+
+            <script id="booking_temp_script" type="text/html">
+             <div class="detail-header layout-style">
+                <h2 class="house-title">{{ ohouse.title }}</h2>
+                <div class="landlord-pic"><img src="/static/media/{{ ohouse.user_avatar }}"></div>
+                <h2 class="landlord-name">房东： <span>{{ ohouse.user_name }}</span></h2>
+            </div>
+            <div class="house-info layout-style">
+               <h3>房屋地址</h3>
+               <ul class="house-info-list text-center">
+                    <li>{{ ohouse.address }}</li>
+               </ul>
+            </div>
+            <ul class="house-type layout-style">
+                <li>
+                    <span class="icon-house"></span>
+                    <div class="icon-text">
+                        <h3>出租{{ ohouse.room_count }}间</h3>
+                        <p>房屋面积:{{ ohouse.acreage }}平米</p>
+                        <p>房屋户型:{{ ohouse.unit }}</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="icon-user"></span>
+                    <div class="icon-text">
+                        <h3>宜住{{ ohouse.capacity }}人</h3>
+                    </div>
+                </li>
+                <li>
+                    <span class="icon-bed"></span>
+                    <div class="icon-text">
+                        <h3>卧床配置</h3>
+                        <p>{{ ohouse.beds }}</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="house-info layout-style">
+                <h3>房间详情</h3>
+                <ul class="house-info-list">
+                    <li>收取押金<span>{{ ohouse.deposit }}</span></li>
+                    <li>最少入住天数<span>{{ ohouse.min_days }}</span></li>
+                    <li>最多入住天数<span>{{ ohouse.max_days }}</span></li>
+                </ul>
+            </div>
+
+            <div class="house-facility layout-style">
+                <h3>配套设施</h3>
+
+                <ul class="house-facility-list clearfix">
+                        {{ each ohouse.facilities as facility }}
+                            <li><span class="{{ facility['css'] }}"></span>{{ facility['name'] }}</li>
+                        {{ /each }}
+                </ul>
+            </div>
+            <div class="house-info layout-style">
+                <h3>评价信息</h3>
+                <ul class="house-comment-list">
+                    <li>
+                        <p>用户名<span class="fr">2016-11-11 20:00:00</span></p>
+                        <p>感觉不错</p>
+                    </li>
+                </ul>
+            </div>
+        </script>
+    {% endraw %}
+{% endblock %}
