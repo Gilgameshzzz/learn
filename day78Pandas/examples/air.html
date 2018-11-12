@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全国空气质量历史数据 | 北京市空气质量历史数据</title>
+<link href="http://cdn.staticfile.org/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/jumbotron-narrow.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+    <!-- <ul class="nav nav-pills pull-right"><li><a href="index-pm25.html">旧版网站</a></li></ul> -->
+    <h3 class="text-muted">全国空气质量历史数据 | 北京市空气质量历史数据</h3>
+  </div>
+  
+  <div class="jumbotron">
+    <p class="lead text-left"><strong>本站提供<br/>北京市空气质量历史数据下载（2013/12/06以来）<br/>全国空气质量历史数据下载（2014/05/13以来）<br/>欢迎各种分析、研究</strong></p>
+    <p class="small text-left">数据类型包括PM2.5, PM10, SO2, NO2, O3, CO, AQI。</p>
+    <p class="small text-left">北京市数据来自<a href="http://www.bjmemc.com.cn/">北京市环境保护检测中心</a>网站，每日更新。</p>
+    <p class="small text-left">全国数据来自<a href="http://pm25.in/">PM25.in</a>网站，每日更新。数据源为中国环境监测总站的<a href="http://106.37.208.233:20035/">全国城市空气质量实时发布平台</a>。</p>
+  </div>
+  
+  <div class="row marketing">
+  <div class="col-lg-12">
+    <h3>年度数据打包下载 <span class="label label-success">推荐（每周更新）</span></h3>
+    <table class="table">
+      <tr>
+        <td><a href="http://pan.baidu.com/s/1gdCeHA7">北京市空气质量数据 百度网盘 下载</a></td>
+        <td>beijing_all_***.csv - 单日PM2.5/PM10/AQI数据<br/>
+        beijing_extra_***.csv - 单日SO2/NO2/O3/CO数据</td>
+      </tr>
+      <tr>
+        <td><a href="http://pan.baidu.com/s/1gd8GUxt">全国空气质量数据 百度网盘 下载</a></td>
+        <td>china_cities_***.csv - 城市平均数据<br/>
+        china_sites_***.csv - 所有监测点数据<br/>
+        站点列表.csv - 所有站点的编号和名称、所属城市</td>
+      </tr>
+    </table>
+    <p>打包最近更新时间：上个周日。</p>
+    <br/>
+    
+    <h3>单日数据下载地址</h3>
+    <table class="table">
+      <tr><td>北京PM2.5/PM10/AQI数据 CSV格式</td><td>http://beijingair.sinaapp.com/data/beijing/all/<strong>[日期]</strong>/csv</td></tr>
+      <tr><td>北京SO2/NO2/O3/CO数据 CSV格式</td><td>http://beijingair.sinaapp.com/data/beijing/extra/<strong>[日期]</strong>/csv</td></tr>
+      <tr><td>全国367个城市数据 CSV格式</td><td>http://beijingair.sinaapp.com/data/china/cities/<strong>[日期]</strong>/csv</td></tr>
+      <tr><td>全国1563个监测点数据 CSV格式</td><td>http://beijingair.sinaapp.com/data/china/sites/<strong>[日期]</strong>/csv</td></tr>
+    </table>
+    <p>其中“<strong>[日期]</strong>”为8位数字表示的日期，例如2013/12/05的数据地址为<a href="http://beijingair.sinaapp.com/data/beijing/all/20131205/csv">http://beijingair.sinaapp.com/data/beijing/all/<strong>20131205</strong>/csv</a>。</p><br/>
+    <h5>下载注意事项</h5>
+    <ul>
+      <li><a href="#messy">CSV打开乱码怎么办？</a></li>
+      <li>数据每日更新，大约在凌晨2点后有前一日的完整数据。</li>
+      <li>北京市PM2.5/PM10/AQI数据从2013/12/06开始提供；<br/>
+         北京市SO2/NO2/O3/CO数据从2014/04/03开始提供；<br/>
+         全国城市数据和监测点数据从2014/05/13开始提供。</li>
+      <li>某些日期由于服务器故障或数据来源问题，会缺失数据。</li>
+      <br/>
+    <ul>
+  </div>
+  </div>
+
+  <div class="row marketing">
+  <div class="col-lg-12">
+    <h3>数据格式说明</h3>
+    <br/>
+    <h4>北京市数据、全国城市数据、全国监测点数据（CSV格式）</h4>
+    <p>第一行为列名，分别是日期、小时、数据类型、各个监测点名（或城市名、监测点代码）；以下每行为某时刻一种类型的数据。</p>
+    <pre>
+date,     hour, type,      东四, 天坛, 官园, 万寿西宫,...
+20131205, 1,    PM2.5,     93,  93,   63,  79,...
+20131205, 1,    PM2.5_24h, 93,  108,  99,  123,...
+20131205, 1,    PM10,      103, 124,  81,  107,...
+20131205, 1,    PM10_24h,  97,  130,  122, 141,...
+20131205, 1,    AQI,       123, 141,  130, 161,...</pre>
+    <br/>
+
+    <h4>全国监测点列表（CSV/XLSX格式，下载见网盘“站点列表-20xx.xx.xx起.csv”）</h4>
+    <p>第一列为监测点编码，第二列为监测点名称，第三列为所属城市，第四、五列为经纬度。</p>
+    <pre>
+监测点编码,监测点名称,城市,经度,纬度
+1001A,万寿西宫,北京,116.366,39.8673
+1002A,定陵,北京,116.17,40.2865
+1003A,东四,北京,116.434,39.9522
+</pre>
+    <br/>
+    
+    <h4><a name="messy"></a>CSV打开乱码怎么办</h4>
+    <p>本站提供的所有CSV都是采用UTF-8编码，有几种情况可能遇到乱码。</p>
+    <ul>
+      <li>如果直接用Excel打开CSV，会看到汉字乱码，数字显示正常。正确的打开方法是：在Excel中点击“数据”-“文本”，选择CSV文件，选中“分隔符号”，编码选择UTF-8，下一步，勾选“逗号”，去掉“Tab键”。这样打开后就能显示汉字了。</li>
+      <li>如果是用程序处理CSV文件，注意读文件内容时使用UTF-8编码。</li>
+      <li>如果下载的单日CSV文件乱码乱得一塌糊涂，连数字都看不出来，那可能是下载工具或浏览器的问题。请换个下载工具，或直接到网盘下载打包数据。</li>
+    </ul>
+    <br/>
+    
+    <h4>数据类型</h4>
+    <table class="table">
+      <tr><th>type</th><th>数据类型</th><th>单位</th></tr>
+      <tr><td>PM2.5</td><td>PM2.5实时浓度</td><td>(微克/立方米)</td></tr>
+      <tr><td>PM2.5_24h</td><td>PM2.5 24小时均值</td><td>(微克/立方米)</td></tr>
+      <tr><td>PM10</td><td>PM10实时浓度</td><td>(微克/立方米)</td></tr>
+      <tr><td>PM10_24h</td><td>PM10 24小时均值</td><td>(微克/立方米)</td></tr>
+      <tr><td>AQI</td><td>AQI实时值</td><td>N/A</td></tr>
+      <tr><td>SO2</td><td>SO2实时浓度</td><td>(微克/立方米)</td></tr>
+      <tr><td>SO2_24h</td><td>SO2 24小时均值</td><td>(微克/立方米)</td></tr>
+      <tr><td>NO2</td><td>NO2实时浓度</td><td>(微克/立方米)</td></tr>
+      <tr><td>NO2_24h</td><td>NO2 24小时均值</td><td>(微克/立方米)</td></tr>
+      <tr><td>O3</td><td>O3实时浓度</td><td>(微克/立方米)</td></tr>
+      <tr><td>CO</td><td>CO实时浓度</td><td>(毫克/立方米)</td></tr>
+      <tr><td>CO_24h</td><td>CO 24小时均值</td><td>(毫克/立方米)</td></tr>
+    </table>
+  </div>
+  </div>
+  
+  <div class="row marketing">
+  <div class="col-lg-12">
+    <h3>附：北京市监测点位置</h3>
+    <p>空气质量监测点共35个。</p>
+    <h4>城区环境评价点12个</h4>
+    <table class="table">
+    <tr><th class="col-xs-2">监测点</th><th class="col-xs-4">监测点全称</th><th class="col-xs-1">经度</th><th class="col-xs-1">纬度</th></tr>
+    <tr><td>东四</td><td>东城东四</td><td>116.417</td><td>39.929</td></tr>
+    <tr><td>天坛</td><td>东城天坛</td><td>116.407</td><td>39.886</td></tr>
+    <tr><td>官园</td><td>西城官园</td><td>116.339</td><td>39.929</td></tr>
+    <tr><td>万寿西宫</td><td>西城万寿西宫</td><td>116.352</td><td>39.878</td></tr>
+    <tr><td>奥体中心</td><td>朝阳奥体中心</td><td>116.397</td><td>39.982</td></tr>
+    <tr><td>农展馆</td><td>朝阳农展馆</td><td>116.461</td><td>39.937</td></tr>
+    <tr><td>万柳</td><td>海淀万柳</td><td>116.287</td><td>39.987</td></tr>
+    <tr><td>北部新区</td><td>海淀北部新区</td><td>116.174</td><td>40.09</td></tr>
+    <tr><td>植物园</td><td>海淀北京植物园</td><td>116.207</td><td>40.002</td></tr>
+    <tr><td>丰台花园</td><td>丰台花园</td><td>116.279</td><td>39.863</td></tr>
+    <tr><td>云岗</td><td>丰台云岗</td><td>116.146</td><td>39.824</td></tr>
+    <tr><td>古城</td><td>石景山古城</td><td>116.184</td><td>39.914</td></tr>
+    </table>
+
+    <h4>郊区环境评价点11个</h4>
+    <table class="table">
+    <tr><th class="col-xs-2">监测点</th><th class="col-xs-4">监测点全称</th><th class="col-xs-1">经度</th><th class="col-xs-1">纬度</th></tr>
+    <tr><td>房山</td><td>房山良乡</td><td>116.136</td><td>39.742</td></tr>
+    <tr><td>大兴</td><td>大兴黄村镇</td><td>116.404</td><td>39.718</td></tr>
+    <tr><td>亦庄</td><td>亦庄开发区</td><td>116.506</td><td>39.795</td></tr>
+    <tr><td>通州</td><td>通州新城</td><td>116.663</td><td>39.886</td></tr>
+    <tr><td>顺义</td><td>顺义新城</td><td>116.655</td><td>40.127</td></tr>
+    <tr><td>昌平</td><td>昌平镇</td><td>116.23</td><td>40.217</td></tr>
+    <tr><td>门头沟</td><td>门头沟龙泉镇</td><td>116.106</td><td>39.937</td></tr>
+    <tr><td>平谷</td><td>平谷镇</td><td>117.1</td><td>40.143</td></tr>
+    <tr><td>怀柔</td><td>怀柔镇</td><td>116.628</td><td>40.328</td></tr>
+    <tr><td>密云</td><td>密云镇</td><td>116.832</td><td>40.37</td></tr>
+    <tr><td>延庆</td><td>延庆镇</td><td>115.972</td><td>40.453</td></tr>
+    </table>
+
+    <h4>对照点及区域点7个</h4>
+    <table class="table">
+    <tr><th class="col-xs-2">监测点</th><th class="col-xs-4">监测点全称</th><th class="col-xs-1">经度</th><th class="col-xs-1">纬度</th></tr>
+    <tr><td>定陵</td><td>昌平定陵</td><td>116.22</td><td>40.292</td></tr>
+    <tr><td>八达岭</td><td>京西北八达岭，京西北区域点</td><td>115.988</td><td>40.365</td></tr>
+    <tr><td>密云水库</td><td>京东北密云水库，京东北区域点</td><td>116.911</td><td>40.499</td></tr>
+    <tr><td>东高村</td><td>京东东高村，京东区域点</td><td>117.12</td><td>40.10</td></tr>
+    <tr><td>永乐店</td><td>京东南永乐店，京东南区域点</td><td>116.783</td><td>39.712</td></tr>
+    <tr><td>榆垡</td><td>京南榆垡，京南区域点</td><td>116.30</td><td>39.52</td></tr>
+    <tr><td>琉璃河</td><td>京西南琉璃河，京西南区域点</td><td>116.00</td><td>39.58</td></tr>
+    </table>
+
+    <h4>交通污染监控点5个</h4>
+    <table class="table">
+    <tr><th class="col-xs-2">监测点</th><th class="col-xs-4">监测点全称</th><th class="col-xs-1">经度</th><th class="col-xs-1">纬度</th></tr>
+    <tr><td>前门</td><td>前门东大街，前门交通点</td><td>116.395</td><td>39.899</td></tr>
+    <tr><td>永定门内</td><td>永定门内大街，永定门交通点</td><td>116.394</td><td>39.876</td></tr>
+    <tr><td>西直门北</td><td>西直门北大街，西直门交通点</td><td>116.349</td><td>39.954</td></tr>
+    <tr><td>南三环</td><td>南三环西路，南三环交通点</td><td>116.368</td><td>39.856</td></tr>
+    <tr><td>东四环</td><td>东四环北路，东四环交通点</td><td>116.483</td><td>39.939</td></tr>
+    </table>
+  </div>
+  </div>
+
+  <div class="footer">
+    <div class="row">
+      <div class="col-lg-12">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xs-8">
+        <p>新浪微博 <a href="http://weibo.com/xiaoleiwang" target="_blank">@王_晓磊</a></p>
+        <p>如果你取用了这里的数据，欢迎到微博上告诉我你在做什么。</p>
+      </div>
+      <div class="col-xs-4">
+        <a class="pull-right" href="http://sae.sina.com.cn" target="_blank"><img src="http://static.sae.sina.com.cn/image/poweredby/120X33_transparent.gif" title="Powered by Sina App Engine"></a>
+      </div>
+    </div>
+  </div>
+    
+</div>
+<script src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+</body>
+</html>
