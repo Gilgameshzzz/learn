@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/jiayongji/p/7119065.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园</title>
+<meta property="og:description" content="jieba（结巴）是一个强大的分词库，完美支持中文分词，本文对其基本用法做一个简要总结。">
+<link type="text/css" rel="stylesheet" href="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/bundle-MountainInk.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/bundle-MountainInk-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/jiayongji/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/jiayongji/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/jiayongji/wlwmanifest.xml">
+<script async="" src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/analytics.js.下载"></script><script src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'jiayongji', cb_enable_mathjax=true;var isLogined=false;</script>
+<script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] 
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/MathJax.js.下载"></script>
+<script src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="preload" href="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/f.txt"></script><script src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/pubads_impl_275.js.下载" async=""></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/jiayongji/"><img id="blogLogo" src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/jiayongji/">键盘上的手艺人</a></h1>
+<h2>每当你在感叹："如果有这样一个东西就好了"的时候，请注意，其实这是你的机会。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/jiayongji/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/AzureSky">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/jiayongji/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/jiayongji/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 96&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 31</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/jiayongji/p/7119065.html">$好玩的分词——python jieba分词模块的基本用法</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"><p>jieba（结巴）是一个强大的分词库，完美支持中文分词，本文对其基本用法做一个简要总结。</p>
+<h1 id="安装jieba">安装jieba</h1>
+<p><code>pip install jieba</code></p>
+<h1 id="简单用法">简单用法</h1>
+<p>结巴分词分为三种模式：精确模式（默认）、全模式和搜索引擎模式，下面对这三种模式分别举例介绍：</p>
+<h3 id="精确模式">精确模式</h3>
+<pre class="python"><code class="hljs"><span class="hljs-keyword">import</span> jieba
+s = <span class="hljs-string">u'我想和女朋友一起去北京故宫博物院参观和闲逛。'</span></code></pre>
+<pre class="python"><code class="hljs">cut = jieba.cut(s)
+
+<span class="hljs-keyword">print</span> <span class="hljs-string">'【Output】'</span>
+<span class="hljs-keyword">print</span> cut
+<span class="hljs-keyword">print</span> <span class="hljs-string">','</span>.join(cut)</code></pre>
+<pre><code class="hljs scala">【<span class="hljs-type">Output</span>】
+&lt;generator <span class="hljs-class"><span class="hljs-keyword">object</span> <span class="hljs-title">cut</span> <span class="hljs-title">at</span> 0<span class="hljs-title">x7f8dbc0efc30&gt;</span></span>
+我,想,和,女朋友,一起,去,北京故宫博物院,参观,和,闲逛,。</code></pre>
+<p>可见分词结果返回的是一个生成器（这对大数据量数据的分词尤为重要）。</p>
+<h3 id="全模式">全模式</h3>
+<pre class="python"><code class="hljs"><span class="hljs-keyword">print</span> <span class="hljs-string">'【Output】'</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">','</span>.join(jieba.cut(s,cut_all = <span class="hljs-keyword">True</span>))</code></pre>
+<pre><code class="hljs">【Output】
+我,想,和,女朋友,朋友,一起,去,北京,北京故宫,北京故宫博物院,故宫,故宫博物院,博物,博物院,参观,和,闲逛,,</code></pre>
+<p>可见全模式就是把文本分成尽可能多的词。</p>
+<h3 id="搜索引擎模式">搜索引擎模式</h3>
+<pre class="python"><code class="hljs"><span class="hljs-keyword">print</span> <span class="hljs-string">'【Output】'</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">','</span>.join(jieba.cut_for_search(s))</code></pre>
+<pre><code class="hljs">【Output】
+我,想,和,朋友,女朋友,一起,去,北京,故宫,博物,博物院,北京故宫博物院,参观,和,闲逛,。</code></pre>
+<h1 id="获取词性">获取词性</h1>
+<p>每个词都有其词性，比如名词、动词、代词等，结巴分词的结果也可以带上每个词的词性，要用到jieba.posseg，举例如下：</p>
+<pre class="python"><code class="hljs"><span class="hljs-keyword">import</span> jieba.posseg <span class="hljs-keyword">as</span> psg
+<span class="hljs-keyword">print</span> <span class="hljs-string">'【Output】'</span>
+<span class="hljs-keyword">print</span> [(x.word,x.flag) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> psg.cut(s)]
+
+<span class="hljs-comment"># 输出：</span>
+<span class="hljs-string">'''
+[(u'我', u'r'), (u'想', u'v'), (u'和', u'c'), (u'女朋友', u'n'), (u'一起', u'm'), 
+(u'去', u'v'), (u'北京故宫博物院', u'ns'), (u'参观', u'n'), (u'和', u'c'), (u'闲逛', u'v'), (u'。', u'x')]
+'''</span></code></pre>
+<p>可以看到成功获取到每个词的词性，这对于我们对分词结果做进一步处理很有帮助，比如只想获取分词结果列表中的名词，那么就可以这样过滤：</p>
+<pre class="python"><code class="hljs"><span class="hljs-keyword">print</span> [(x.word,x.flag) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> psg.cut(s) <span class="hljs-keyword">if</span> x.flag.startswith(<span class="hljs-string">'n'</span>)]
+
+<span class="hljs-comment"># 输出：</span>
+<span class="hljs-string">'''
+[(u'女朋友', u'n'), (u'北京故宫博物院', u'ns'), (u'参观', u'n')]
+'''</span></code></pre>
+<p>至于词性的每个字母分别表示什么词性，jieba分词的结果可能有哪些词性，就要去查阅词性对照表了，本文结尾附了一份从网上搜到的词性对照表，想了解更详细的词性分类信息，可以到网上搜索"结巴分词词性对照"。</p>
+<h1 id="并行分词">并行分词</h1>
+<p>在文本数据量非常大的时候，为了提高分词效率，开启并行分词就很有必要了。jieba支持并行分词，基于python自带的multiprocessing模块，但要注意的是在Windows环境下不支持。</p>
+<p>用法：</p>
+<pre class="python"><code class="hljs"><span class="hljs-comment"># 开启并行分词模式，参数为并发执行的进程数</span>
+jieba.enable_parallel(<span class="hljs-number">5</span>)
+
+<span class="hljs-comment"># 关闭并行分词模式</span>
+jieba.disable_parallel()</code></pre>
+<p>举例：开启并行分词模式对三体全集文本进行分词</p>
+<pre class="python"><code class="hljs">santi_text = open(<span class="hljs-string">'./santi.txt'</span>).read()
+<span class="hljs-keyword">print</span> len(santi_text)</code></pre>
+<pre><code class="hljs">2681968</code></pre>
+<p>可以看到三体全集的数据量还是非常大的，有260多万字节的长度。</p>
+<pre class="python"><code class="hljs">jieba.enable_parallel(<span class="hljs-number">100</span>)
+santi_words = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> jieba.cut(santi_text) <span class="hljs-keyword">if</span> len(x) &gt;= <span class="hljs-number">2</span>]
+jieba.disable_parallel()
+</code></pre>
+<h1 id="获取出现频率top-n的词">获取出现频率Top n的词</h1>
+<p>还是以上面的三体全集文本为例，假如想要获取分词结果中出现频率前20的词列表，可以这样获取：</p>
+<pre class="python"><code class="hljs"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter
+c = Counter(santi_words).most_common(<span class="hljs-number">20</span>)
+<span class="hljs-keyword">print</span> c
+
+<span class="hljs-comment"># 输出：</span>
+<span class="hljs-string">'''
+[(u'\r\n', 21805), (u'一个', 3057), (u'没有', 2128), (u'他们', 1690), (u'我们', 1550), 
+(u'这个', 1357), (u'自己', 1347), (u'程心', 1320), (u'现在', 1273), (u'已经', 1259), 
+(u'世界', 1243), (u'罗辑', 1189), (u'可能', 1177), (u'什么', 1176), (u'看到', 1114), 
+(u'知道', 1094), (u'地球', 951), (u'人类', 935), (u'太空', 930), (u'三体', 883)]
+'''</span></code></pre>
+<p>可以看到结果中'\r\n'居然是出现频率最高的词，还有'一个'、'没有'、'这个'等这种我们并不想要的无实际意义的词，那么就可以根据前面说的词性来进行过滤，这个以后细讲。</p>
+<h1 id="使用用户字典提高分词准确性">使用用户字典提高分词准确性</h1>
+<p>不使用用户字典的分词结果：</p>
+<pre class="python"><code class="hljs">txt = <span class="hljs-string">u'欧阳建国是创新办主任也是欢聚时代公司云计算方面的专家'</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">','</span>.join(jieba.cut(txt))</code></pre>
+<pre><code class="hljs">欧阳,建国,是,创新,办,主任,也,是,欢聚,时代,公司,云,计算,方面,的,专家</code></pre>
+<p>使用用户字典的分词结果：</p>
+<pre class="python"><code class="hljs">jieba.load_userdict(<span class="hljs-string">'user_dict.txt'</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-string">','</span>.join(jieba.cut(txt))</code></pre>
+<pre><code class="hljs">欧阳建国,是,创新办,主任,也,是,欢聚时代,公司,云计算,方面,的,专家</code></pre>
+<p>可以看出使用用户字典后分词准确性大大提高。</p>
+<p>注：其中user_dict.txt的内容如下：</p>
+<p>欧阳建国 5</p>
+<p>创新办 5 i</p>
+<p>欢聚时代 5</p>
+<p>云计算 5</p>
+<p>用户字典每行一个词，格式为：</p>
+<p>词语 词频 词性</p>
+<p>其中词频是一个数字，词性为自定义的词性，要注意的是词频数字和空格都要是半角的。</p>
+<h1 id="附结巴分词词性对照表按词性英文首字母排序">附：结巴分词词性对照表（按词性英文首字母排序）</h1>
+<h3 id="形容词1个一类4个二类">形容词(1个一类，4个二类)</h3>
+<p>a 形容词</p>
+<p>ad 副形词</p>
+<p>an 名形词</p>
+<p>ag 形容词性语素</p>
+<p>al 形容词性惯用语</p>
+<h3 id="区别词1个一类2个二类">区别词(1个一类，2个二类)</h3>
+<p>b 区别词</p>
+<p>bl 区别词性惯用语</p>
+<h3 id="连词1个一类1个二类">连词(1个一类，1个二类)</h3>
+<p>c 连词</p>
+<p>cc 并列连词</p>
+<h3 id="副词1个一类">副词(1个一类)</h3>
+<p>d 副词</p>
+<h3 id="叹词1个一类">叹词(1个一类)</h3>
+<p>e 叹词</p>
+<h3 id="方位词1个一类">方位词(1个一类)</h3>
+<p>f 方位词</p>
+<h3 id="前缀1个一类">前缀(1个一类)</h3>
+<p>h 前缀</p>
+<h3 id="后缀1个一类">后缀(1个一类)</h3>
+<p>k 后缀</p>
+<h3 id="数词1个一类1个二类">数词(1个一类，1个二类)</h3>
+<p>m 数词</p>
+<p>mq 数量词</p>
+<h3 id="名词-1个一类7个二类5个三类">名词 (1个一类，7个二类，5个三类)</h3>
+<p>名词分为以下子类：</p>
+<p>n 名词</p>
+<p>nr 人名</p>
+<p>nr1 汉语姓氏</p>
+<p>nr2 汉语名字</p>
+<p>nrj 日语人名</p>
+<p>nrf 音译人名</p>
+<p>ns 地名</p>
+<p>nsf 音译地名</p>
+<p>nt 机构团体名</p>
+<p>nz 其它专名</p>
+<p>nl 名词性惯用语</p>
+<p>ng 名词性语素</p>
+<h3 id="拟声词1个一类">拟声词(1个一类)</h3>
+<p>o 拟声词</p>
+<h3 id="介词1个一类2个二类">介词(1个一类，2个二类)</h3>
+<p>p 介词</p>
+<p>pba 介词“把”</p>
+<p>pbei 介词“被”</p>
+<h3 id="量词1个一类2个二类">量词(1个一类，2个二类)</h3>
+<p>q 量词</p>
+<p>qv 动量词</p>
+<p>qt 时量词</p>
+<h3 id="代词1个一类4个二类6个三类">代词(1个一类，4个二类，6个三类)</h3>
+<p>r 代词</p>
+<p>rr 人称代词</p>
+<p>rz 指示代词</p>
+<p>rzt 时间指示代词</p>
+<p>rzs 处所指示代词</p>
+<p>rzv 谓词性指示代词</p>
+<p>ry 疑问代词</p>
+<p>ryt 时间疑问代词</p>
+<p>rys 处所疑问代词</p>
+<p>ryv 谓词性疑问代词</p>
+<p>rg 代词性语素</p>
+<h3 id="处所词1个一类">处所词(1个一类)</h3>
+<p>s 处所词</p>
+<h3 id="时间词1个一类1个二类">时间词(1个一类，1个二类)</h3>
+<p>t 时间词</p>
+<p>tg 时间词性语素</p>
+<h3 id="助词1个一类15个二类">助词(1个一类，15个二类)</h3>
+<p>u 助词</p>
+<p>uzhe 着</p>
+<p>ule 了 喽</p>
+<p>uguo 过</p>
+<p>ude1 的 底</p>
+<p>ude2 地</p>
+<p>ude3 得</p>
+<p>usuo 所</p>
+<p>udeng 等 等等 云云</p>
+<p>uyy 一样 一般 似的 般</p>
+<p>udh 的话</p>
+<p>uls 来讲 来说 而言 说来</p>
+<p>uzhi 之</p>
+<p>ulian 连 （“连小学生都会”）</p>
+<h3 id="动词1个一类9个二类">动词(1个一类，9个二类)</h3>
+<p>v 动词</p>
+<p>vd 副动词</p>
+<p>vn 名动词</p>
+<p>vshi 动词“是”</p>
+<p>vyou 动词“有”</p>
+<p>vf 趋向动词</p>
+<p>vx 形式动词</p>
+<p>vi 不及物动词（内动词）</p>
+<p>vl 动词性惯用语</p>
+<p>vg 动词性语素</p>
+<h3 id="标点符号1个一类16个二类">标点符号(1个一类，16个二类)</h3>
+<p>w 标点符号</p>
+<p>wkz 左括号，全角：（ 〔 ［ ｛ 《 【 〖 〈 半角：( [ { &lt;</p>
+<p>wky 右括号，全角：） 〕 ］ ｝ 》 】 〗 〉 半角： ) ] { &gt;</p>
+<p>wyz 左引号，全角：“ ‘ 『</p>
+<p>wyy 右引号，全角：” ’ 』</p>
+<p>wj 句号，全角：。</p>
+<p>ww 问号，全角：？ 半角：?</p>
+<p>wt 叹号，全角：！ 半角：!</p>
+<p>wd 逗号，全角：， 半角：,</p>
+<p>wf 分号，全角：； 半角： ;</p>
+<p>wn 顿号，全角：、</p>
+<p>wm 冒号，全角：： 半角： :</p>
+<p>ws 省略号，全角：…… …</p>
+<p>wp 破折号，全角：—— －－ ——－ 半角：--- ----</p>
+<p>wb 百分号千分号，全角：％ ‰ 半角：%</p>
+<p>wh 单位符号，全角：￥ ＄ ￡ ° ℃ 半角：$</p>
+<h3 id="字符串1个一类2个二类">字符串(1个一类，2个二类)</h3>
+<p>x 字符串</p>
+<p>xx 非语素字</p>
+<p>xu 网址URL</p>
+<h3 id="语气词1个一类">语气词(1个一类)</h3>
+<p>y 语气词(delete yg)</p>
+<h3 id="状态词1个一类">状态词(1个一类)</h3>
+<p>z 状态词</p>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="https://www.cnblogs.com/jiayongji/category/1029115.html" target="_blank">$数据分析与挖掘</a></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/jiayongji/tag/python/">python</a>, <a href="https://www.cnblogs.com/jiayongji/tag/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>, <a href="https://www.cnblogs.com/jiayongji/tag/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/">中文分词</a>, <a href="https://www.cnblogs.com/jiayongji/tag/%E5%88%86%E8%AF%8D/">分词</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7119065,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;87070617-3e00-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jiayongji/" target="_blank"><img src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/20180407215113.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jiayongji/">AzureSky</a><br>
+            <a href="http://home.cnblogs.com/u/jiayongji/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/jiayongji/followers">粉丝 - 43</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;87070617-3e00-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7119065,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">5</span>
+    </div>
+    <div class="buryit" onclick="votePost(7119065,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/jiayongji/p/7119059.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/jiayongji/p/7119059.html" title="发布于2017-07-04 23:20">$用python处理Excel文档（2）——用xlsxwriter模块写xls/xlsx文档</a><br><a href="https://www.cnblogs.com/jiayongji/p/7119072.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/jiayongji/p/7119072.html" title="发布于2017-07-04 23:24">$好玩的分词——分析一下《三体》全集</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-07-04 23:22</span> <a href="https://www.cnblogs.com/jiayongji/">AzureSky</a> 阅读(<span id="post_view_count">49579</span>) 评论(<span id="post_comment_count">7</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7119065" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/jiayongji/p/7119065.html#" onclick="AddToWz(7119065);return false;">收藏</a></div>
+	</div>
+	<script src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/highlight.min.js.下载"></script><script>markdown_highlight();</script><script type="text/javascript">var allowComments=true,cb_blogId=228770,cb_entryId=7119065,cb_blogApp=currentBlogApp,cb_blogUserGuid='87070617-3e00-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/7/4 23:22:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3851467" class="layer">#1楼</a><a name="3851467" id="comment_anchor_3851467"></a>  <span class="comment_date">2017-11-27 15:04</span> <a id="a_comment_author_3851467" href="https://www.cnblogs.com/n2meetu/" target="_blank">SingSingaSong</a> <a href="http://msg.cnblogs.com/send/SingSingaSong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3851467" class="blog_comment_body">santi_words = [x for x in jieba.cut(santi_text) if len(x) &gt;= 2] 这个是什么用法？可以详细说明一下么</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3851467,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3851467,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3851467_avatar" style="display:none;">http://pic.cnblogs.com/face/917748/20171106115239.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3851925" class="layer">#2楼</a><a name="3851925" id="comment_anchor_3851925"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-11-27 23:50</span> <a id="a_comment_author_3851925" href="https://www.cnblogs.com/jiayongji/" target="_blank">AzureSky</a> <a href="http://msg.cnblogs.com/send/AzureSky" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3851925" class="blog_comment_body"><a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3851467" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3851467);">@</a>
+SingSingaSong<br>这是python的列表推导式语法，这行代码的意思是把分词结果中的所有长度小于2的词都过滤掉，只保留长度大于或等于2的词</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3851925,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3851925,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3851925_avatar" style="display:none;">http://pic.cnblogs.com/face/760572/20180407215113.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3852850" class="layer">#3楼</a><a name="3852850" id="comment_anchor_3852850"></a>  <span class="comment_date">2017-11-28 20:22</span> <a id="a_comment_author_3852850" href="https://www.cnblogs.com/n2meetu/" target="_blank">SingSingaSong</a> <a href="http://msg.cnblogs.com/send/SingSingaSong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3852850" class="blog_comment_body"><a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3851925" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3851925);">@</a>
+AzureSky 明白了，谢谢解答</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3852850,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3852850,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3852850_avatar" style="display:none;">http://pic.cnblogs.com/face/917748/20171106115239.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3856011" class="layer">#4楼</a><a name="3856011" id="comment_anchor_3856011"></a>  <span class="comment_date">2017-12-01 21:28</span> <a id="a_comment_author_3856011" href="http://home.cnblogs.com/u/1289510/" target="_blank">hwcmh</a> <a href="http://msg.cnblogs.com/send/hwcmh" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3856011" class="blog_comment_body">博主您好，看了您的介绍，我遇到下面一个问题：<br>print ([(x.word,x.flag) for x in psg.cut(s)])<br>我在按照您的思路运行时，输出的结果是：[(u'\u6211', u'r'), (u'\u60f3', u'v'), (u'\u548c', u'c'), (u'\u5973\u670b\u53cb', u'n'), (u'\u4e00\u8d77', u'm'), (u'\u53bb', u'v'), (u'\u5317\u4eac\u6545\u5bab\u535a\u7269\u9662', u'ns'), (u'\u53c2\u89c2', u'n'), (u'\u548c', u'c'), (u'\u95f2\u901b', u'v'), (u'\u3002', u'x')]<br>出现了乱码的情况，我用的是Python2.7的版本，从网上也没有查到相关的资料，博主您可以帮我解释一下吗？万分感谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3856011,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3856011,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3856620" class="layer">#5楼</a><a name="3856620" id="comment_anchor_3856620"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-12-03 18:08</span> <a id="a_comment_author_3856620" href="https://www.cnblogs.com/jiayongji/" target="_blank">AzureSky</a> <a href="http://msg.cnblogs.com/send/AzureSky" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3856620" class="blog_comment_body"><a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3856011" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3856011);">@</a>
+hwcmh<br>你好，这不是乱码，而是Unicode编码，可以参考我的这篇文章来解决：<br>[专治各种python字符编码问题疑难杂症](<a href="http://www.jianshu.com/p/a439674c1716" target="_blank">http://www.jianshu.com/p/a439674c1716</a>)<br>解决办法：<br>print ([(x.word.decode('unicode-escape').encode('utf-8'),x.flag) for x in psg.cut(s)])</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3856620,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3856620,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3856620_avatar" style="display:none;">http://pic.cnblogs.com/face/760572/20180407215113.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3946494" class="layer">#6楼</a><a name="3946494" id="comment_anchor_3946494"></a>  <span class="comment_date">2018-04-09 10:50</span> <a id="a_comment_author_3946494" href="https://www.cnblogs.com/sadumi/" target="_blank">participle_zeng</a> <a href="http://msg.cnblogs.com/send/participle_zeng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3946494" class="blog_comment_body">请问一下你在写分词代码的时候用的是什么编译器啊，我使用的是pycharm，一直运行出错，求楼主推荐一个好用一点的编译器！！！急急急</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3946494,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3946494,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3946494_avatar" style="display:none;">http://pic.cnblogs.com/face/1362196/20180327114726.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3946601" class="layer">#7楼</a><a name="3946601" id="comment_anchor_3946601"></a>[<span class="louzhu">楼主</span>]<span id="comment-maxId" style="display:none;">3946601</span><span id="comment-maxDate" style="display:none;">2018/4/9 12:05:43</span>  <span class="comment_date">2018-04-09 12:05</span> <a id="a_comment_author_3946601" href="https://www.cnblogs.com/jiayongji/" target="_blank">AzureSky</a> <a href="http://msg.cnblogs.com/send/AzureSky" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3946601" class="blog_comment_body"><a href="https://www.cnblogs.com/jiayongji/p/7119065.html#3946494" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3946494);">@</a>
+participle_zeng<br>你好，推荐使用notepad++搭配CMD命令行的方式，会避免遇到很多坑：）</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3946601,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3946601,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3946601_avatar" style="display:none;">http://pic.cnblogs.com/face/760572/20180407215113.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/jiayongji/p/7119065.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/jiayongji/p/7119065.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/xiaodongsuibi/p/8931116.html" target="_blank" onclick="clickRecomItmem(8931116,&#39;Scw4z3Ef0kc/CLu/8/ro9kg8qF2gmF+6zU1f5EfQuFM0ngU74vheqcxqEYCnYRUfYDJ/YYzbuwq7ZlBjq3EmNLL4DmFLxDrB6OUDUOoWcqXei4LTS9rrpynsihG+xeWdiCDAFqrkOzoMqfpk&#39;)">python结巴分词</a><br>·  <a href="https://www.cnblogs.com/wanpython/archive/2013/06/03/3116136.html" target="_blank" onclick="clickRecomItmem(3116136,&#39;T7L8dEEi8PnkjNJDilh6ba63Xq+UV0TkQc3B3u1cTKwBQ+sIQCRUuAlnetfX1ojqEJm5bSXCR2fEhqG0bkGoaZ47qOGdoWrnIBSlRMYy4S8++RDVCDcjpuVF7nTV5if/ZrscA7JLmdEXyDZ9&#39;)">python中文分词</a><br>·  <a href="https://www.cnblogs.com/fclbky/p/4920718.html" target="_blank" onclick="clickRecomItmem(4920718,&#39;a34zohisfuQOUJM1SnN+5ZOs4HtKM5tqBe6s4UJW4cwTdzr9czq4L9ilN2cDMym5rOHE6b5fXADmW9dtLAx+hhjeLuPkLTTW1b3Oh7vJ2HgO+Ul6YueRqbIg4c4SUaNcbQXa8tLHkD7JbMyU&#39;)">结巴 中文分词</a><br>·  <a href="https://www.cnblogs.com/jackchen-Net/p/8207009.html" target="_blank" onclick="clickRecomItmem(8207009,&#39;L/MAGS+imwiwHmZMlvGjj0SPSDMIEc7Z/n5xab+knFf5QzIytJtHt8FCoPmMEYqXEBlt6/h6qPJCIWD0mbe9WiBuvxZ3w2rU5Ff0yYffNQmQEXw2YLWKPn1dg00FxQjz351ceczJ0hNSvLnn&#39;)">python 结巴分词(jieba)详解</a><br>·  <a href="https://www.cnblogs.com/leajoy/p/5484153.html" target="_blank" onclick="clickRecomItmem(5484153,&#39;9ob9rkxQRIu24Ve9MabYjyfjIif1wsCPUJKq984k/aPsomssWHDia5gQUx0ZbaZ85HupyUvM+goepcJ0AbwnbE66gPWCuv/UM76Yrf0K8DwUSjSBA0Gz32SgjIApIbqIJzLpUe6TjA0nLQYv&#39;)">jieba中文分词（python）</a><br></div></div>
+<script async="async" src="./$好玩的分词——python jieba分词模块的基本用法 - AzureSky - 博客园_files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/612388/" target="_blank">如何驾驶火星漫游车“好奇号”？事实上并没有操纵杆</a><br> ·  <a href="https://news.cnblogs.com/n/612404/" target="_blank">用户现在可直接在Instagram视频贴的购物</a><br> ·  <a href="https://news.cnblogs.com/n/612403/" target="_blank">谷歌Photos网页版获更新：采用与软件版配对的新Material UI</a><br> ·  <a href="https://news.cnblogs.com/n/612402/" target="_blank">新兴风口还是小众娱乐？揭开电竞陪玩的面纱</a><br> ·  <a href="https://news.cnblogs.com/n/612400/" target="_blank">网易回应《锤子生死劫》：报道内容有独立信源 愿和罗永浩探讨</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/jiayongji/">AzureSky</a><br>园龄：<a href="https://home.cnblogs.com/u/jiayongji/" title="入园时间：2015-05-22">3年5个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/jiayongji/followers/">43</a><br>关注：<a href="https://home.cnblogs.com/u/jiayongji/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;87070617-3e00-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div><script>getFollowStatus('87070617-3e00-e511-b908-9dcfd8948a71')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/10/01&#39;);return false;">&lt;</a></td><td align="center">2018年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalTodayDay" align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/jiayongji/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/jiayongji/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/jiayongji/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/jiayongji/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/jiayongji/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/jiayongji/tag/python/">python</a>(41)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>(8)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>(7)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/Json/">Json</a>(5)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/GitHub/">GitHub</a>(5)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/Git/">Git</a>(4)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/JS/">JS</a>(4)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/%E7%AE%97%E6%B3%95/">算法</a>(4)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/%E5%88%86%E8%AF%8D/">分词</a>(3)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/%E7%88%AC%E8%99%AB/">爬虫</a>(3)</li><li><a href="https://www.cnblogs.com/jiayongji/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/jiayongji/category/804204.html">$《第一行代码：Android》读书笔记(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/jiayongji/category/803059.html">$Android高级(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/jiayongji/category/813169.html">$Android基础(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/jiayongji/category/1029110.html">$Git(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/jiayongji/category/798303.html">$Java技术(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/jiayongji/category/1102493.html">$Matlab(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/jiayongji/category/1031111.html">$python基础(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/jiayongji/category/1029111.html">$python库大全(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/jiayongji/category/803522.html">$编程工具(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/jiayongji/category/798299.html">$工作经历(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/jiayongji/category/813170.html">$设计模式(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/jiayongji/category/1029115.html">$数据分析与挖掘(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="https://www.cnblogs.com/jiayongji/category/803520.html">$数据库(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="https://www.cnblogs.com/jiayongji/category/1067420.html">$思维导图读书笔记(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="https://www.cnblogs.com/jiayongji/category/798302.html">$算法与数据结构(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="https://www.cnblogs.com/jiayongji/category/1029104.html">$网络爬虫(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="https://www.cnblogs.com/jiayongji/category/1029124.html">$微信小程序开发(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="https://www.cnblogs.com/jiayongji/category/1029105.html">$正则表达式(8)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/jiayongji/archive/2017/11.html">2017年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/jiayongji/archive/2017/10.html">2017年10月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/jiayongji/archive/2017/09.html">2017年9月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/jiayongji/archive/2017/08.html">2017年8月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/jiayongji/archive/2017/07.html">2017年7月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/jiayongji/archive/2017/02.html">2017年2月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/jiayongji/archive/2016/08.html">2016年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/jiayongji/archive/2016/06.html">2016年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/jiayongji/archive/2016/05.html">2016年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="https://www.cnblogs.com/jiayongji/archive/2016/04.html">2016年4月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="https://www.cnblogs.com/jiayongji/archive/2016/03.html">2016年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="https://www.cnblogs.com/jiayongji/archive/2015/08.html">2015年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="https://www.cnblogs.com/jiayongji/archive/2015/05.html">2015年5月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1093885" class="catList sidebar-block">
+<h3 class="catListTitle">contact</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://www.cnblogs.com/dkblog/archive/2011/08/26/2155018.html">python 的日志logging模块学习</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://blog.csdn.net/m0_37430356" rel="nofollow">why-csdn</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_eclipse插件开发系列资源。" class="catListEclipse插件开发系列资源。 sidebar-block">
+<h3 class="catListTitle">eclipse-plugin</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://blog.csdn.net/aspnet2002web/article/details/52681669" rel="nofollow">Eclipse4.4以上版本不能使用easyExplorer,采用OpenExplorer</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="http://blog.csdn.net/column/details/eclipse-plugin.html" rel="nofollow">Eclipse插件开发实战系列</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_2" href="http://pan.baidu.com/s/1boT7HnT" rel="nofollow">Eclipse插件开发学习笔记.张鹏等.扫描版.pdf</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1296370" class="catList sidebar-block">
+<h3 class="catListTitle">emacs</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_4_Link_0" href="http://ff120.github.io/hexoblog/2016/06/12/%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/Windows%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6Proxifier/" rel="nofollow">Windows全局代理软件Proxifier</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_1" href="https://blog.csdn.net/lishuo_OS_DS/article/details/8069242" rel="nofollow">手把手教你学会 Emacs 主题配置</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_2" href="https://ask.helplib.com/emacs/post_1237717" rel="nofollow">在emacs中，什么是好的自定义键绑定？</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1302837" class="catList sidebar-block">
+<h3 class="catListTitle">git</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_5_Link_0" href="https://blog.csdn.net/mvpboss1004/article/details/54692697" rel="nofollow">git同一项目使用多个远程仓库</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1297121" class="catList sidebar-block">
+<h3 class="catListTitle">HTML+CSS</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_6_Link_0" href="https://blog.csdn.net/nightelve/article/details/7957726" rel="nofollow">四个好看的CSS样式表格</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1132198" class="catList sidebar-block">
+<h3 class="catListTitle">Java并发编程</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_7_Link_0" href="http://blog.csdn.net/ghsau/article/category/1707779">Java线程专栏</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1090103" class="catList sidebar-block">
+<h3 class="catListTitle">JMockit知识清单</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_8_Link_0" href="http://blog.csdn.net/zero__007/article/details/50365311" rel="nofollow"> JMockit简单使用(二)</a> </li>
+
+<li><a id="CatList_LinkList_8_Link_1" href="http://blog.csdn.net/zero__007/article/details/49280827" rel="nofollow">JMockit简单使用</a> </li>
+
+<li><a id="CatList_LinkList_8_Link_2" href="http://blog.csdn.net/foreverling/article/details/51234149" rel="nofollow">JMockit学习笔记</a> </li>
+
+<li><a id="CatList_LinkList_8_Link_3" href="http://blog.csdn.net/hahalzb/article/details/6091019" rel="nofollow">JUnit Assert方法总结</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1331515" class="catList sidebar-block">
+<h3 class="catListTitle">other</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_9_Link_0" href="https://forum.corel.com/EN/viewtopic.php?p=176471" rel="nofollow">ulead的一个问题</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1151924" class="catList sidebar-block">
+<h3 class="catListTitle">Python</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_10_Link_0" href="https://www.cnblogs.com/fang123456/p/7235688.html" rel="nofollow">python实现ssh及sftp功能</a> </li>
+
+<li><a id="CatList_LinkList_10_Link_1" href="http://blog.csdn.net/bryanlai0720/article/details/44650033" rel="nofollow">关于Java调用外部程序即时输出的一些收获</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_和python有关的各种优秀资源。" class="catList和Python有关的各种优秀资源。 sidebar-block">
+<h3 class="catListTitle">Python资源集锦</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_11_Link_0" href="http://blog.csdn.net/wangkjs/article/details/47444599" rel="nofollow">python urllib/urllib2 get/post使用详解</a> </li>
+
+<li><a id="CatList_LinkList_11_Link_1" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/" rel="nofollow">各种编译好的whl库</a> </li>
+
+<li><a id="CatList_LinkList_11_Link_2" href="https://pypi.python.org/pypi" rel="nofollow">官方库管理平台</a> </li>
+
+<li><a id="CatList_LinkList_11_Link_3" href="https://www.zhihu.com/question/24590883/answer/92420471" rel="nofollow">哪些 Python 库让你相见恨晚？</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1294674" class="catList sidebar-block">
+<h3 class="catListTitle">selenium</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_12_Link_0" href="https://blog.yasking.org/a/selenium-and-requests.html" rel="nofollow">selenium+requests</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1159153" class="catList sidebar-block">
+<h3 class="catListTitle">sublime</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_13_Link_0" href="https://www.cnblogs.com/qiyeboy/p/5966353.html" rel="nofollow">sublime Text3 插件编写教程_第一课</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1159344" class="catList sidebar-block">
+<h3 class="catListTitle">SymPy</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_14_Link_0" href="http://ju.outofmemory.cn/entry/80895" rel="nofollow">SymPy Tutorial</a> </li>
+
+<li><a id="CatList_LinkList_14_Link_1" href="https://www.cnblogs.com/baby123/p/6296629.html" rel="nofollow">使用 Python 解数学方程</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1097812" class="catList sidebar-block">
+<h3 class="catListTitle">TKinter</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_15_Link_0" href="http://blog.csdn.net/column/details/14775.html" rel="nofollow">Python Tkinter 简易教程</a> </li>
+
+<li><a id="CatList_LinkList_15_Link_1" href="http://blog.csdn.net/sm9sun/article/details/53743116" rel="nofollow">python——Tkinter图形化界面及threading多线程</a> </li>
+
+<li><a id="CatList_LinkList_15_Link_2" href="https://www.cnblogs.com/nn0p/archive/2013/04/24/3040042.html">Python使用进度条表示工作进度</a> </li>
+
+<li><a id="CatList_LinkList_15_Link_3" href="http://blog.csdn.net/zjiang1994/article/details/53513377" rel="nofollow">Tkinter选择路径功能的实现</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1094387" class="catList sidebar-block">
+<h3 class="catListTitle">windows-context-menu</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_16_Link_0" href="http://bbs.csdn.net/topics/390005686" rel="nofollow">如何将程序添加到右键菜单中,并能向程序传递路径</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1153710" class="catList sidebar-block">
+<h3 class="catListTitle">爬虫</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_17_Link_0" href="https://cuiqingcai.com/1052.html" rel="nofollow">Python爬虫学习系列教程</a> </li>
+
+<li><a id="CatList_LinkList_17_Link_1" href="https://www.cnblogs.com/xieqiankun/p/xpath_extract_text.html?utm_source=tuicool&amp;utm_medium=referral" rel="nofollow">xpath提取多个标签下的text </a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1150456" class="catList sidebar-block">
+<h3 class="catListTitle">正则递归匹配</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_18_Link_0" href="http://www.regexlab.com/zh/deelx/syntax/ext_recs.htm" rel="nofollow">DEELX 正则表达式扩展语法：递归表达式</a> </li>
+
+<li><a id="CatList_LinkList_18_Link_1" href="http://blog.csdn.net/lwqhp/article/details/72893285" rel="nofollow">Python的regex模块——更强大的正则表达式引擎</a> </li>
+
+<li><a id="CatList_LinkList_18_Link_2" href="https://pypi.python.org/pypi/regex/" rel="nofollow">regex 2018.01.10</a> </li>
+
+<li><a id="CatList_LinkList_18_Link_3" href="http://blog.csdn.net/technofiend/article/details/49906755" rel="nofollow">理解正则表达式中的(?R)递归</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/jiayongji/p/5560806.html#4049845">1. Re:$Android自定义View的三种实现方式</a></li>
+        <li class="recent_comment_body">你这不是照抄的郭霖的文章吗？？？？</li>
+        <li class="recent_comment_author">--LucasXu</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/jiayongji/p/5297187.html#4048723">2. Re:$Java-json系列（一）：用GSON解析Json格式数据</a></li>
+        <li class="recent_comment_body">话说解析json数组之后 不应该是得到一个arraylist吗？ 然而再次遍历改集合却提示com.google.gson.internal.LinkedTreeMap cannot be cast t......</li>
+        <li class="recent_comment_author">--Apkto</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/jiayongji/p/7118934.html#4032458">3. Re:$python爬虫系列（1）——一个简单的爬虫实例</a></li>
+        <li class="recent_comment_body">写的不错，推荐一个五脏俱全的爬虫requests+lxml写的。<a href="https://www.cnblogs.com/jiayongji/p/7119065.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--hbswyb</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/jiayongji/p/5560806.html#4016901">4. Re:$Android自定义View的三种实现方式</a></li>
+        <li class="recent_comment_body">写的不错，不过，一个参数的构造方法和两个的有什么区别说一下就更好了，一开始我把一些方法放在一个参数的构造方法里了就实现不了效果，放第二个就好了，自定义属性是从AttributeSet参数传进来的，所以......</li>
+        <li class="recent_comment_author">--CMusketeer</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/jiayongji/p/7118934.html#4013485">5. Re:$python爬虫系列（1）——一个简单的爬虫实例</a></li>
+        <li class="recent_comment_body">谢谢！经过两天的努力，我终于运行出来了（就是这么菜），显示module 'urllib' has no attribute 'urlretrieve'错误时，要加上import urllib.requ......</li>
+        <li class="recent_comment_author">--桩子101</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/jiayongji/p/5297187.html">1. $Java-json系列（一）：用GSON解析Json格式数据(95867)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5560806.html">2. $Android自定义View的三种实现方式(72567)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5771444.html">3. $Linux vi/vim编辑器常用命令与用法总结(59987)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/7119065.html">4. $好玩的分词——python jieba分词模块的基本用法(49565)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/6417862.html">5. $Java-json系列（二）：用JSONObject解析和处理json数据(37826)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/jiayongji/p/5300563.html">1. $科大讯飞开放平台——语音听写接口的使用(10)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/7119065.html">2. $好玩的分词——python jieba分词模块的基本用法(7)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5560806.html">3. $Android自定义View的三种实现方式(6)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5297187.html">4. $Java-json系列（一）：用GSON解析Json格式数据(2)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/7119028.html">5. $用python玩点有趣的数据分析——一元线性回归分析实例(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/jiayongji/p/7119065.html">1. $好玩的分词——python jieba分词模块的基本用法(5)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5297187.html">2. $Java-json系列（一）：用GSON解析Json格式数据(4)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5560806.html">3. $Android自定义View的三种实现方式(3)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5771444.html">4. $Linux vi/vim编辑器常用命令与用法总结(2)</a></li><li><a href="https://www.cnblogs.com/jiayongji/p/5413335.html">5. $Android AlarmManager的用法详解(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 AzureSky
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

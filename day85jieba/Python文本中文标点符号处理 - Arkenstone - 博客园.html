@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.cnblogs.com/arkenstone/p/6092255.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>Python文本处理——中文标点符号处理 - Arkenstone - 博客园</title>
+<meta property="og:description" content="中文文本中可能出现的标点符号来源比较复杂，通过匹配等手段对他们处理的时候需要格外小心，防止遗漏。以下为在下处理中文标点的时候采用的两种方法，如有更好的工具，请推荐补充。 1. 中文标点集合 比较常见标">
+<link type="text/css" rel="stylesheet" href="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/bundle-sea.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/bundle-sea-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/arkenstone/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/arkenstone/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/arkenstone/wlwmanifest.xml">
+<script async="" src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/analytics.js.下载"></script><script src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'arkenstone', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="preload" href="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/f.txt"></script><script src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/pubads_impl_275.js.下载" async=""></script></head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/arkenstone/">Arkenstone</a><br>
+		slip the surly bond of earth to touch the face of god
+	</div>
+</div>
+
+</div>
+
+<div id="mytopmenu">
+	
+		<div id="mylinks"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a> &nbsp;
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/arkenstone/">首页</a> &nbsp;
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> &nbsp;
+<a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Arkenstone">联系</a> &nbsp;
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/arkenstone/rss">订阅</a><a id="blog_nav_rss_image" href="https://www.cnblogs.com/arkenstone/rss"><img src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/xml.gif" alt="订阅"></a>&nbsp;
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+</div>
+		<div id="mystats"><div id="blog_stats">
+随笔-74&nbsp;
+评论-74&nbsp;
+文章-0&nbsp;
+<!--trackbacks-0-->
+</div></div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<div class="post">
+	<h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/arkenstone/p/6092255.html">Python文本处理——中文标点符号处理</a></h1>
+	<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"><p>中文文本中可能出现的标点符号来源比较复杂，通过匹配等手段对他们处理的时候需要格外小心，防止遗漏。以下为在下处理中文标点的时候采用的两种方法，如有更好的工具，请推荐补充。</p>
+<ol>
+<li>中文标点集合<br>
+比较常见标点有这些：<br>
+<code>！？｡＂＃＄％＆＇（）＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞〟〰〾〿–—‘’‛“”„‟…‧﹏.</code><br>
+调用<a href="http://zhon.readthedocs.io/en/latest/#">zhon包</a>的<code>zhon.hanzi.punctuation</code>函数即可得到这些中文标点。<br>
+如果想用英文的标点，则可调用string包的<code>string.punctuation</code>函数可得到： <code>!"#$%&amp;\'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~</code><br>
+因此，比如需要将所有标点符号去除，可以进行以下操作：</li>
+</ol>
+<pre class="python"><code class="hljs"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> zhon.hanzo <span class="hljs-keyword">import</span> punctuation
+<span class="hljs-meta">&gt;&gt;&gt; </span>line = <span class="hljs-string">"测试。。去除标点。。"</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> re.sub(<span class="hljs-string">ur"[%s]+"</span> %punctuation, <span class="hljs-string">""</span>, line.decode(<span class="hljs-string">"utf-8"</span>)) <span class="hljs-comment"># 需要将str转换为unicode</span>
+测试去除标点
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> re.sub(<span class="hljs-string">ur"[%s]+"</span> %punctuation, <span class="hljs-string">""</span>, line) <span class="hljs-comment">#将不会发生替换</span>
+测试。。去除标点。。</code></pre>
+<p>当然，如果想去除重复的符号而只保留一个，那么可以用<code>\1</code>指明：比如</p>
+<pre class="python"><code class="hljs"><span class="hljs-meta">&gt;&gt;&gt; </span>re.sub(<span class="hljs-string">ur"([%s])+"</span> %punctuation, <span class="hljs-string">r"\1"</span>, line.decode(<span class="hljs-string">"utf-8"</span>))</code></pre>
+<p>如果不是用的zhon包提供的已经是unicode码的标点集，而是自己定义，那么请不要忘了转换成unicode码：</p>
+<pre class="python"><code class="hljs">punc = <span class="hljs-string">"！？｡＂＃＄％＆＇（）＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞〟〰〾〿–—‘’‛“”„‟…‧﹏."</span>
+punc = punc.decode(<span class="hljs-string">"utf-8"</span>)</code></pre>
+<ol>
+<li>直接指明标点的unicode码范围<br>
+所有字符的unicode编码可以参考<a href="http://jrgraphix.net/research/unicode_blocks.php">这里</a>。<br>
+大部分标点分布在以下几个范围：</li>
+</ol>
+<pre class="python"><code class="hljs">Basic Latin: <span class="hljs-string">u'\u0020'</span> - <span class="hljs-string">u'\007f'</span>
+general punctuation: <span class="hljs-string">u'\u2000'</span> - <span class="hljs-string">u'\u206f'</span>
+CJK Symbols <span class="hljs-keyword">and</span> Punctuation: <span class="hljs-string">u'\u3000'</span> - <span class="hljs-string">u'\u303f'</span>
+halfwidth <span class="hljs-keyword">and</span> fulllwidth forms: <span class="hljs-string">u'\uff00'</span> - <span class="hljs-string">u'\uffef'</span></code></pre>
+<p>在用<code>u'\u0020-\u007f\u2000-\u206f\u3000-\u303f\uff00-uffef'</code>替换<code>punctuation</code>就能实现上述操作。<br>
+<strong>PS：中文常用字符的范围是<code>u'\u4e00' - u'\u9fff'</code>。</strong>匹配所以中文可以这样：</p>
+<pre class="python"><code class="hljs">re.findall(<span class="hljs-string">ur"\u4e00-\u9fff"</span>, line)</code></pre>
+<p><strong>小结：</strong></p>
+<ol>
+<li>基本标点符号的处理和上中文的文本处理一样需要转换成unicode码，而且需要注意的是中文的格式比较多，每种格式对应的unicode码都是不同的，比如半角和全角的符号就是不同的unicode码。</li>
+<li>由于标点符号在断句以及情感语气判断时比较重要，尤其是在网络短文本上尤其如此。在断句的时候可以在固定的full stop符号(！？｡)基础上自己添加诸如~和，等获得自己想要的分句；而在情感分析的时候获取诸如!?...等符号的连续出现的长度可用于判断当前的语气强度。</li>
+</ol>
+<p><strong>参考：</strong></p>
+<ol>
+<li>http://stackoverflow.com/questions/2718196/find-all-chinese-text-in-a-string-using-python-and-regex</li>
+<li>http://stackoverflow.com/questions/1366068/whats-the-complete-range-for-chinese-characters-in-unicode</li>
+<li>http://zhon.readthedocs.io/en/latest/#</li>
+</ol>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/arkenstone/tag/NLP/">NLP</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6092255,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;6b763de6-220d-e611-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/arkenstone/" target="_blank"><img src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/20160428172504.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/arkenstone/">Arkenstone</a><br>
+            <a href="http://home.cnblogs.com/u/arkenstone/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/arkenstone/followers">粉丝 - 79</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;6b763de6-220d-e611-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6092255,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6092255,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/arkenstone/p/6064196.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/arkenstone/p/6064196.html" title="发布于2016-11-15 02:45">Stanford NLP学习笔记：7. 情感分析（Sentiment）</a><br><a href="https://www.cnblogs.com/arkenstone/p/6116060.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/arkenstone/p/6116060.html" title="发布于2016-11-30 00:31">Python从线程获取函数返回值</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2016-11-23 01:14</span> <a href="https://www.cnblogs.com/arkenstone/">Arkenstone</a> 阅读(<span id="post_view_count">15734</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6092255" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/arkenstone/p/6092255.html#" onclick="AddToWz(6092255);return false;">收藏</a></div>
+</div>
+<script src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/highlight.min.js.下载"></script><script>markdown_highlight();</script><script type="text/javascript">var allowComments=true,cb_blogId=282591,cb_entryId=6092255,cb_blogApp=currentBlogApp,cb_blogUserGuid='6b763de6-220d-e611-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/11/23 1:14:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/arkenstone/p/6092255.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/arkenstone/p/6092255.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/xiaoxingyiyi/p/5367192.html" target="_blank" onclick="clickRecomItmem(5367192,&#39;r0IF6LNuhvCynHKNHF3ZBG5u8fRLvj2dBHLns/JYxOfgrwyi0aBQaWopeug6SNWTngoxfpEfs1VvbBeIwOGCMcXzx6oafs6g49Cvxc1ZgANSRvyEwmADA60lJro1i2EZvZeqH1bMolFMmHgvwAE=&#39;)">浏览器对中文标点符号折行的处理差异</a><br>·  <a href="https://www.cnblogs.com/jkmiao/p/4680621.html" target="_blank" onclick="clickRecomItmem(4680621,&#39;I+ZKobqS6uq486vFkOgi6k9M/f0YxzygZXgfZYuQmgX/7oaxfmVg4Rh8sg8dYjWZ8kvCMTSIpCEmGrr/4kL72ffNYBSIrzwHzXQ/5ATuyNacV5b06UuCtdG0x9uk5eCepAYUY7Zb9t6RQ4WkLIc=&#39;)">文本预处理去除标点符号</a><br>·  <a href="https://www.cnblogs.com/smartjune/p/5402641.html" target="_blank" onclick="clickRecomItmem(5402641,&#39;kPe5M9NmoCcH+Q4vP3YtRKV0897WToJDfSXTGirQhq1CfJMlcMpLJrOdyy9ZVIzqHiL99e384Y3VZFf7j3EAfodssVIKZkbvRL/9LmB/qvIfxPs6it+DpCC0BFdOWKW25WXOqSkMmOZCy3KtzPI=&#39;)">IntelliJ IDEA 不能输入中文标点</a><br>·  <a href="https://www.cnblogs.com/dormscript/p/5952721.html" target="_blank" onclick="clickRecomItmem(5952721,&#39;AUT9dK/UDXNkCIYQJLOY0YnqE1tR3OGUMcAzYiwPiHDtvy/vtf714FDUw1QGsvx9cpjO+Ix9AuxHHSRc7238QdXoj4967rIxOJ6g0lJJRcd4QzRGjPJErZaYZdM2iig7M9JW7zaGrO75SGPpoGU=&#39;)">php正则，删除字符串中的中英文标点符号</a><br>·  <a href="https://www.cnblogs.com/Jay-CFD/p/5915513.html" target="_blank" onclick="clickRecomItmem(5915513,&#39;gokGzFeg52FYz6BZED+M+cb6PTVVRFWklKSgu2opNnug5EyKiACXDW48whkG+dw36eqYNxHSTd26B/ITwHMoxX/CBIH/oK5LsoLDYs11sQzszCzqy0FAuyAmoeoTy/nnJuKxiCPHJ1Czy93G3kY=&#39;)">word中利用宏替换标点标点全角与半角</a><br></div></div>
+<script async="async" src="./Python文本中文标点符号处理 - Arkenstone - 博客园_files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/612403/" target="_blank">谷歌Photos网页版获更新：采用与软件版配对的新Material UI</a><br> ·  <a href="https://news.cnblogs.com/n/612402/" target="_blank">新兴风口还是小众娱乐？揭开电竞陪玩的面纱</a><br> ·  <a href="https://news.cnblogs.com/n/612400/" target="_blank">网易回应《锤子生死劫》：报道内容有独立信源 愿和罗永浩探讨</a><br> ·  <a href="https://news.cnblogs.com/n/612398/" target="_blank">《我的世界：教育版》更新加入代码编辑器 编程教程等</a><br> ·  <a href="https://news.cnblogs.com/n/612397/" target="_blank">CheckPoint：FlawedAmmyy远程访问木马已成近期最大安全威胁</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/arkenstone/">Arkenstone</a><br>园龄：<a href="https://home.cnblogs.com/u/arkenstone/" title="入园时间：2016-04-28">2年6个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/arkenstone/followers/">79</a><br>关注：<a href="https://home.cnblogs.com/u/arkenstone/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;6b763de6-220d-e611-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('6b763de6-220d-e611-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/10/01&#39;);return false;">&lt;</a></td><td align="center">2018年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalTodayDay" align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script><br>
+			<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/arkenstone/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/arkenstone/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/arkenstone/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/arkenstone/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/arkenstone/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="https://www.cnblogs.com/arkenstone/tag/python/">python</a>(29)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/opencv/">opencv</a>(13)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>(12)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/Tensorflow/">Tensorflow</a>(9)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/R/">R</a>(5)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/Stanford%20NLP/">Stanford NLP</a>(4)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/%E7%AE%97%E6%B3%95/">算法</a>(4)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/Ubuntu/">Ubuntu</a>(3)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/flask/">flask</a>(3)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/git/">git</a>(3)</li><li><a href="https://www.cnblogs.com/arkenstone/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3 class="catListTitle">随笔档案</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2018/06.html">2018年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2018/05.html">2018年5月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2018/04.html">2018年4月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2018/03.html">2018年3月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2018/02.html">2018年2月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/12.html">2017年12月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/11.html">2017年11月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/09.html">2017年9月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/08.html">2017年8月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/07.html">2017年7月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/06.html">2017年6月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_11" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/05.html">2017年5月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_12" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/04.html">2017年4月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_13" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/03.html">2017年3月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_14" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/02.html">2017年2月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_15" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2017/01.html">2017年1月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_16" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/12.html">2016年12月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_17" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/11.html">2016年11月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_18" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/10.html">2016年10月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_19" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/09.html">2016年9月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_20" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/08.html">2016年8月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_21" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/07.html">2016年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_22" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/06.html">2016年6月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_23" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/05.html">2016年5月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_24" class="listitem" href="https://www.cnblogs.com/arkenstone/archive/2016/04.html">2016年4月 (4)</a></li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/arkenstone/p/5943489.html#4109898">1. Re:【Python与机器学习】：利用Keras进行多类分类</a></li>
+        <li class="recent_comment_body">想问下博主有没有图像分类识别的源代码，想学习一下，谢谢！</li>
+        <li class="recent_comment_author">--瘦弱的胖纸</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/arkenstone/p/6932632.html#4093913">2. Re:利用opencv作透明重叠人群密度热度图</a></li>
+        <li class="recent_comment_body">因为我对深度学习不太了解<br>我做这个是为了写特征匹配的论文，<br>bounding box<br>是什么，博主可否告知</li>
+        <li class="recent_comment_author">--yangninghua</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/arkenstone/p/6932632.html#4093910">3. Re:利用opencv作透明重叠人群密度热度图</a></li>
+        <li class="recent_comment_body">你好博主，完整的代码·可否参考以下，我一直在找怎么做热力图，这是我写的博客，但是不对，看到你的才发现咋做<br><a href="https://www.cnblogs.com/arkenstone/p/6092255.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--yangninghua</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/arkenstone/p/7016481.html#4023227">4. Re:Tensorflow同时加载使用多个模型</a></li>
+        <li class="recent_comment_body">楼主的分享很好。<br>真是学无止境啊。</li>
+        <li class="recent_comment_author">--Julymay</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/arkenstone/p/6064196.html#4007881">5. Re:Stanford NLP学习笔记：7. 情感分析（Sentiment）</a></li>
+        <li class="recent_comment_body">很用心的博客</li>
+        <li class="recent_comment_author">--川山甲</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/arkenstone/p/5794063.html">1. Python中利用LSTM模型进行时间序列预测分析(86450)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/6490017.html">2. Ubuntu16.04下安装OpenCV3.2.0(81742)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/5609063.html">3. Python中在脚本中引用其他文件函数的方法(43864)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/5496761.html">4. KS-检验（Kolmogorov-Smirnov test） -- 检验数据是否符合某种分布(42280)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/6064196.html">5. Stanford NLP学习笔记：7. 情感分析（Sentiment）(30625)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/arkenstone/p/5794063.html">1. Python中利用LSTM模型进行时间序列预测分析(41)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/5943489.html">2. 【Python与机器学习】：利用Keras进行多类分类(4)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/6250782.html">3. Python解析命令行读取参数 -- argparse模块(3)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/5727885.html">4. Python中if __name__ == "__main__": 的作用(3)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/5467034.html">5. python数据分析师面试题选(3)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/arkenstone/p/5727885.html">1. Python中if __name__ == "__main__": 的作用(5)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/6250782.html">2. Python解析命令行读取参数 -- argparse模块(4)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/6490017.html">3. Ubuntu16.04下安装OpenCV3.2.0(3)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/5727883.html">4. Python中将打印输出导向日志文件(2)</a></li><li><a href="https://www.cnblogs.com/arkenstone/p/5467034.html">5. python数据分析师面试题选(2)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: <a href="http://www.cnblogs.com/">博客园</a>	模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+	Copyright ©2018 Arkenstone
+</div>
+
+
+
+
+
+</body></html>
